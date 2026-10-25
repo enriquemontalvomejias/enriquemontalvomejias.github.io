@@ -39,4 +39,20 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.emoji:
-      emoji_index:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+extra:
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/enrique-montalvo-mejias/
+    - icon: fontawesome/brands/github
+      link: https://github.com/enriquemontalvomejias
+nav:
+  - Inicio: index.md
+  - Trayectoria: trayectoria.md
+  - Formación: formacion.md
+  - Proyectos:
+      - Inventario de activos con GLPI: proyectos/glpi.md
+      - Lab de identidad híbrida: proyectos/lab-ad.md
+      - SIEM distribuido con Wazuh: proyectos/wazuh.md
+  - Rumbo: rumbo.md
