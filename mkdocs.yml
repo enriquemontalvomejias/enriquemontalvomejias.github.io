@@ -55,4 +55,5 @@ nav:
       - Inventario de activos con GLPI: proyectos/glpi.md
       - Lab de identidad híbrida: proyectos/lab-ad.md
       - SIEM distribuido con Wazuh: proyectos/wazuh.md
+      - MetroASIR (TFG): proyectos/metroasir.md
   - Rumbo: rumbo.md
