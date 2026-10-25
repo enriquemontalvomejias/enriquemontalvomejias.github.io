@@ -1,14 +1,66 @@
-# Enrique Montalvo Mejías
+---
+hide:
+  - navigation
+  - toc
+---
 
-Consultor de sistemas y ciberseguridad en Vicmartin, una consultora IT de Madrid.
+<section class="hero">
+  <p class="hero-kicker">Sistemas · Ciberseguridad · Madrid</p>
+  <h1>Enrique Montalvo Mejías</h1>
+  <p class="hero-lead">
+    Consultor de sistemas y ciberseguridad en Vicmartin. Documento lo que
+    despliego: la arquitectura, las decisiones y lo que se rompió por el camino.
+  </p>
+  <div class="hero-stack">
+    <span>Zscaler</span>
+    <span>Zero Trust</span>
+    <span>Entra ID</span>
+    <span>Active Directory</span>
+    <span>Wazuh</span>
+    <span>PowerShell</span>
+  </div>
+  <div class="hero-actions">
+    <a class="md-button md-button--primary" href="#proyectos">Ver proyectos</a>
+    <a class="md-button" href="https://www.linkedin.com/in/enrique-montalvo-mejias/">LinkedIn</a>
+  </div>
+</section>
+
 Trabajo entre la infraestructura del día a día, en entornos on-premise, híbridos
-y cloud, y la seguridad, que cada vez pesa más: Zero Trust con Zscaler,
-identidad Microsoft y detección. Mi objetivo es la seguridad operativa:
-detección, análisis de alertas y respuesta.
+y cloud, y la seguridad, que cada vez pesa más. Mi objetivo es la seguridad
+operativa: detección, análisis de alertas y respuesta.
 
-Este sitio recoge proyectos que he diseñado y desplegado, contados con el detalle
-técnico que no cabe en un CV: por qué se tomó cada decisión y con qué me peleé
-por el camino.
+## Proyectos
+
+<div class="grid cards" markdown>
+
+-   :material-database-search:{ .lg .middle } **Inventario multi-tenant con GLPI**
+
+    ---
+
+    Plataforma de inventario para una veintena de organizaciones cliente y
+    unos 600 endpoints. Despliegue por GPO e Intune.
+
+    [:octicons-arrow-right-24: Leer el writeup](proyectos/glpi.md)
+
+-   :material-account-sync:{ .lg .middle } **Laboratorio de identidad híbrida**
+
+    ---
+
+    AD local sincronizado con Entra ID, MFA obligatorio y unión al dominio
+    en remoto con Tailscale.
+
+    [:octicons-arrow-right-24: Leer el writeup](proyectos/lab-ad.md)
+
+-   :material-radar:{ .lg .middle } **SIEM distribuido con Wazuh**
+
+    ---
+
+    Despliegue en dos nodos para monitorizar servidores de cliente.
+    *En curso.*
+
+    [:octicons-arrow-right-24: Ver el estado](proyectos/wazuh.md)
+
+</div>
 
 ## En qué trabajo
 
@@ -44,11 +96,6 @@ por el camino.
     de Active Directory con Purple Knight.
 
 </div>
-
-## Proyectos
-
-- [Inventario de activos multi-tenant con GLPI](proyectos/glpi.md): plataforma de
-  inventario para una veintena de organizaciones cliente y unos 600 endpoints.
 
 ## Formación
 
