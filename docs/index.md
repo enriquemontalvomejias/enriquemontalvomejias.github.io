@@ -70,7 +70,7 @@ operativa: detección, análisis de alertas y respuesta.
     publicada con Cloudflare Tunnel. TFG junto a Álvaro García, calificado
     con un 9,15.
 
-    [:octicons-arrow-right-24: Ver el repositorio](https://github.com/enriquemontalvomejias/MetroASIR)
+    [:octicons-arrow-right-24: Leer el Writeup](proyectos/metroasir.md)
 
 </div>
 
