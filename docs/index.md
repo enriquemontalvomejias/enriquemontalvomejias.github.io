@@ -117,7 +117,8 @@ operativa: detección, análisis de alertas y respuesta.
 
     ---
 
-    Cinco entornos distintos y un ascenso en menos de dos años.
+    Cinco entornos distintos, del rack al cloud. Un perfil comodín con rumbo
+    a la ciberseguridad.
 
     [:octicons-arrow-right-24: Ver la trayectoria](trayectoria.md)
 
