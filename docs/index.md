@@ -8,8 +8,9 @@ hide:
   <p class="hero-kicker">Sistemas · Ciberseguridad · Madrid</p>
   <h1>Enrique Montalvo Mejías</h1>
   <p class="hero-lead">
-    Consultor de sistemas y ciberseguridad en Vicmartin. Documento lo que
-    despliego: la arquitectura, las decisiones y lo que se rompió por el camino.
+    Consultor de sistemas y ciberseguridad en Vicmartin. De técnico de campo a
+    ciberseguridad en 21 meses, documentando cada paso: la arquitectura, las
+    decisiones y lo que se rompió por el camino.
   </p>
   <div class="hero-stack">
     <span>Zscaler</span>
@@ -21,6 +22,7 @@ hide:
   </div>
   <div class="hero-actions">
     <a class="md-button md-button--primary" href="#proyectos">Ver proyectos</a>
+    <a class="md-button" href="trayectoria/">Mi trayectoria</a>
     <a class="md-button" href="https://www.linkedin.com/in/enrique-montalvo-mejias/">LinkedIn</a>
   </div>
 </section>
@@ -31,7 +33,7 @@ operativa: detección, análisis de alertas y respuesta.
 
 ## Proyectos
 
-<div class="grid cards" markdown>
+<div class="grid cards two" markdown>
 
 -   :material-database-search:{ .lg .middle } **Inventario multi-tenant con GLPI**
 
@@ -60,11 +62,21 @@ operativa: detección, análisis de alertas y respuesta.
 
     [:octicons-arrow-right-24: Ver el estado](proyectos/wazuh.md)
 
+-   :material-subway-variant:{ .lg .middle } **MetroASIR**
+
+    ---
+
+    Infraestructura en Proxmox segmentada en WAN, LAN y DMZ con pfSense y
+    publicada con Cloudflare Tunnel. TFG junto a Álvaro García, calificado
+    con un 9,15.
+
+    [:octicons-arrow-right-24: Ver el repositorio](https://github.com/enriquemontalvomejias/MetroASIR)
+
 </div>
 
 ## En qué trabajo
 
-<div class="grid cards" markdown>
+<div class="grid cards two" markdown>
 
 -   :material-shield-lock:{ .lg .middle } **Seguridad y acceso**
 
@@ -97,13 +109,32 @@ operativa: detección, análisis de alertas y respuesta.
 
 </div>
 
-## Formación
+## Sigue leyendo
 
-- Máster en Ciberseguridad e Inteligencia Artificial, Evolve *(en curso, incluye eJPTv2)*
-- CFGS en Administración de Sistemas Informáticos en Red
-- Zscaler for Users: Administrator (EDU-200), Westcon-Comstor, 2026
-- Zscaler Digital Transformation Administrator (ZDTA) *(en preparación)*
+<div class="grid cards" markdown>
 
-## Contacto
+-   :material-timeline-text:{ .lg .middle } **Trayectoria**
 
-[LinkedIn](https://www.linkedin.com/in/enrique-montalvo-mejias/)
+    ---
+
+    Cinco entornos distintos y un ascenso en menos de dos años.
+
+    [:octicons-arrow-right-24: Ver la trayectoria](trayectoria.md)
+
+-   :material-school:{ .lg .middle } **Formación**
+
+    ---
+
+    ASIR, el máster en curso, certificaciones y los labs que monto por mi cuenta.
+
+    [:octicons-arrow-right-24: Ver la formación](formacion.md)
+
+-   :material-compass:{ .lg .middle } **Rumbo**
+
+    ---
+
+    Hacia dónde voy, con fechas y lo que ya está tachado.
+
+    [:octicons-arrow-right-24: Ver la hoja de ruta](rumbo.md)
+
+</div>
