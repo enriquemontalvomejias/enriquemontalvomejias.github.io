@@ -190,4 +190,14 @@ body[data-md-color-scheme="slate"] {
 @media screen and (max-width: 44.9375em) {
   .hero { padding: 1.8rem 1rem 1.4rem; }
   .md-typeset .hero h1 { font-size: 1.6rem; }
+}/* ---------- Botones secundarios legibles ---------- */
+.md-typeset .md-button:not(.md-button--primary) {
+  color: var(--md-default-fg-color);
+  border-color: var(--md-default-fg-color--lighter);
+}
+
+.md-typeset .md-button:not(.md-button--primary):hover,
+.md-typeset .md-button:not(.md-button--primary):focus {
+  color: #0d1117;
+  border-color: var(--md-accent-fg-color);
 }
