@@ -159,28 +159,8 @@ Mirándolo desde mi trabajo actual en seguridad:
 
 ---
 
-## Evolución: versión en contenedores
-
-Después del ciclo empezamos a llevar el proyecto a Docker
-([MetroASIR-Docker](https://github.com/enriquemontalvomejias/MetroASIR-Docker)),
-siguiendo la línea que planteábamos en las conclusiones del TFG:
-
-- **Frontend** en Nginx, que sirve la web estática y hace de proxy inverso hacia el
-  backend.
-- **Backend** en PHP con Apache, con la misma API.
-- **Base de datos** en MariaDB, con volumen persistente y el script SQL cargado
-  automáticamente al crear el contenedor.
-- Los tres servicios en una red bridge propia, y solo el frontend publica un puerto.
-
-Lo que antes eran tres máquinas virtuales se levanta con un
-`docker compose up`. Está en curso, y el siguiente paso natural sería orquestarlo
-con Kubernetes.
-
----
-
 ## Código
 
 - [MetroASIR](https://github.com/enriquemontalvomejias/MetroASIR): versión original
   del TFG (API, base de datos y frontend).
-- [MetroASIR-Docker](https://github.com/enriquemontalvomejias/MetroASIR-Docker):
-  versión en contenedores.
+
