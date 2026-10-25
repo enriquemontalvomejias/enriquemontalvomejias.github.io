@@ -8,9 +8,9 @@ hide:
   <p class="hero-kicker">Sistemas · Ciberseguridad · Madrid</p>
   <h1>Enrique Montalvo Mejías</h1>
   <p class="hero-lead">
-    Consultor de sistemas y ciberseguridad en Vicmartin. De técnico de campo a
-    ciberseguridad en 21 meses, documentando cada paso: la arquitectura, las
-    decisiones y lo que se rompió por el camino.
+    Consultor de sistemas y ciberseguridad en Vicmartin. He trabajado del rack
+    al cloud, y documento cada paso: la arquitectura, las decisiones y lo que
+    se rompió por el camino.
   </p>
   <div class="hero-stack">
     <span>Zscaler</span>
