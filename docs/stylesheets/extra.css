@@ -1,0 +1,58 @@
+.hero {
+  padding: 2.5rem 1.5rem 2rem;
+  margin: 0 0 2rem;
+  border-radius: .6rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  background:
+    radial-gradient(70% 140% at 0% 0%,
+      color-mix(in srgb, var(--md-accent-fg-color) 14%, transparent),
+      transparent);
+}
+
+.hero-kicker {
+  font-family: var(--md-code-font-family);
+  font-size: .65rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--md-accent-fg-color);
+  margin: 0 0 .6rem;
+}
+
+.md-typeset .hero h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--md-default-fg-color);
+  margin: 0 0 1rem;
+}
+
+.hero-lead {
+  font-size: .95rem;
+  max-width: 36rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.hero-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: 1.2rem 0 1.6rem;
+}
+
+.hero-stack span {
+  font-family: var(--md-code-font-family);
+  font-size: .65rem;
+  padding: .2rem .65rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 999px;
+  color: var(--md-default-fg-color--light);
+}
+
+.hero-actions .md-button {
+  margin: 0 .5rem .5rem 0;
+}
+
+@media screen and (max-width: 44.9375em) {
+  .hero { padding: 1.8rem 1rem 1.4rem; }
+  .md-typeset .hero h1 { font-size: 1.6rem; }
+}
