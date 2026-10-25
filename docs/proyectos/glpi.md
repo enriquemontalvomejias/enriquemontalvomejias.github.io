@@ -59,10 +59,11 @@ flowchart LR
     GLPI -.->|Reglas de asignación| ENT["Entidades por cliente"]
 ```
 
-**Servidor.** GLPI 11 sobre una máquina virtual Linux en un hipervisor propio, con
-Apache como frontal y MariaDB como backend. Certificado de Let's Encrypt emitido por
-desafío DNS-01, porque el servicio no se expone en el puerto 80 y el desafío HTTP-01
-no era viable.
+**Servidor.** GLPI 11 sobre una máquina virtual Debian 12 en un proveedor
+cloud (Plenit, antes Jotelulu), con Apache como frontal y MariaDB como backend.
+El certificado de Let's Encrypt, emitido por desafío DNS-01, sustituyó a uno
+autofirmado: con él, los agentes validan la cadena de confianza completa sin
+excepciones ni opciones para saltarse la verificación SSL.
 
 **Publicación.** El servicio se publica en un puerto no estándar. Esta decisión, que
 parecía menor, resultó ser el punto más conflictivo del proyecto: los clientes cuyo
@@ -109,17 +110,21 @@ Tres vías según el tipo de equipo, todas sobre GLPI Agent 1.18 x64.
 
 === "GPO"
 
-    Para equipos en dominio. El MSI se publica como aplicación asignada desde
-    directiva de grupo, con los parámetros de servidor y TAG pasados en la
-    instalación. Es el camino por defecto y cubre la mayor parte del parque.
+    Despliegue principal, para clientes con Active Directory. Desde los
+    controladores de dominio de cada cliente se aplica una directiva que, 30
+    minutos después del inicio de sesión, ejecuta un script de PowerShell
+    desde SYSVOL. El script instala el MSI del agente con la etiqueta de
+    inventario de ese cliente y lanza el primer inventario. Es idempotente:
+    si el agente ya está bien configurado, no reinstala nada. Cada cliente
+    tiene su propia directiva y su propia etiqueta.
 
 === "Intune"
 
-    Para equipos gestionados desde la nube. El MSI se empaqueta como `.intunewin`
-    con IntuneWinAppUtil y se despliega como aplicación Win32. La regla de detección
-    apunta a `HKLM\SOFTWARE\GLPI-Agent`, valor `server`, en vez de a un archivo o a
-    una versión de producto: es más fiable porque comprueba que el agente está
-    *configurado*, no solo instalado.
+    Para los clientes gestionados desde Intune. El MSI y el script se
+    empaquetan juntos como `.intunewin` con IntuneWinAppUtil y se publican
+    como aplicación Win32. La regla de detección apunta a
+    `HKLM\SOFTWARE\GLPI-Agent`, valor `server`: comprueba que el agente
+    está configurado, no solo instalado.
 
 === "Manual"
 
