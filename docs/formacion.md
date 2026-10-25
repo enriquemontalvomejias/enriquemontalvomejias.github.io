@@ -55,7 +55,7 @@ un 9,15.
 
 ## Por mi cuenta
 
-<div class="grid cards" markdown>
+<div class="grid cards two" markdown>
 
 -   :material-account-sync:{ .lg .middle } **Lab de identidad híbrida**
 
@@ -65,13 +65,6 @@ un 9,15.
     sobre Proxmox.
 
     [:octicons-arrow-right-24: Ver el writeup](proyectos/lab-ad.md)
-
--   :material-server:{ .lg .middle } **Lab actual en Hyper-V**
-
-    ---
-
-    Active Directory en el PC de casa, auditado con Purple Knight. Base para
-    los próximos labs de detección e IA aplicada.
 
 -   :material-book-open-variant:{ .lg .middle } **Este portfolio**
 
