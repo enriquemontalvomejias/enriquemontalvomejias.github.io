@@ -32,7 +32,7 @@ Sistemas Linux y Windows, redes y virtualización, cloud con OpenStack y AWS,
 bases de datos y fundamentos de ciberseguridad: firewalls, proxies y
 criptografía. El segundo curso, compaginado con un puesto de técnico de campo.
 
-Trabajo de fin de ciclo: **MetroASIR**, junto a Álvaro García, calificado con
+Trabajo de fin de ciclo: [MetroASIR](proyectos/metroasir.md), junto a Álvaro García, calificado con
 un 9,15.
 </div>
 
