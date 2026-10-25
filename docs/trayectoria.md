@@ -5,13 +5,18 @@ hide:
 
 # Trayectoria
 
-De técnico de campo a consultor de sistemas y ciberseguridad en 21 meses,
-pasando por cinco entornos muy distintos: hardware, servicio técnico a
-empresas, industria ferroviaria, soporte 24x7 y consultoría.
+He pasado por cinco entornos muy distintos: hardware, servicio técnico a
+empresas, industria ferroviaria, soporte 24x7 y consultoría. Eso es lo que me
+diferencia: conozco cada capa, del rack y el cableado a la identidad y el Zero
+Trust en cloud.
+
+Hoy mi rol se orienta cada vez más a la ciberseguridad, pero sigo siendo un
+perfil comodín: cuando algo se complica en un cliente, también soy el que baja
+a resolverlo en persona.
 
 <div class="stats">
-  <div><strong>21 meses</strong><span>de técnico de campo a consultor de ciberseguridad</span></div>
   <div><strong>5 entornos</strong><span>hardware, servicio técnico, industria, soporte 24x7 y consultoría</span></div>
+  <div><strong>Del rack al cloud</strong><span>cableado y switches, servidores y virtualización, identidad y Zero Trust</span></div>
   <div><strong>~600</strong><span>endpoints inventariados con la plataforma GLPI</span></div>
 </div>
 
@@ -23,14 +28,15 @@ empresas, industria ferroviaria, soporte 24x7 y consultoría.
 ### Consultor de sistemas y ciberseguridad
 **Vicmartin Soluciones Avanzadas** · Madrid
 
-Ascenso a un rol mixto: mantengo las funciones de sistemas y Zscaler pasa a ser
-mi foco principal de seguridad.
+Rol mixto: mantengo las funciones de sistemas y Zscaler pasa a ser mi foco
+principal de seguridad.
 
 - Zscaler ZIA, ZPA, ZDX y Client Connector en varios tenants de cliente.
 - Segmentación Zero Trust (High Trust / Low Trust), segmentos de aplicación y
   políticas de acceso.
 - Seguimiento de informes QBR con cliente.
 - Identidad Microsoft, GLPI, virtualización y troubleshooting, como en el rol anterior.
+- Soporte presencial en cliente cuando la situación lo requiere.
 </div>
 
 <div class="tl-item" markdown>
@@ -60,7 +66,7 @@ mi foco principal de seguridad.
   institucional (Vodafone – Ministerio de Defensa).
 - Monitorización proactiva de infraestructura crítica y escalado a N2/N3.
 - Diagnóstico de líneas móviles y fijas, y coordinación de intervenciones en campo.
-- Primer contacto con entornos de alta disponibilidad y SLA estrictos.
+- Trabajo en entornos de alta disponibilidad con SLA estrictos.
 </div>
 
 <div class="tl-item" markdown>
@@ -97,6 +103,6 @@ mi foco principal de seguridad.
 
 </div>
 
-En cada puesto he subido un nivel de responsabilidad: de instalar equipos a
-diseñar plataformas para varios clientes. El siguiente escalón está en
-[Rumbo](rumbo.md).
+Cada entorno suma una capa que sigo usando hoy: redes e industria, soporte con
+SLA estrictos, trato directo con el cliente en campo y diseño de plataformas en
+consultoría. Hacia dónde va todo esto, en [Rumbo](rumbo.md).
