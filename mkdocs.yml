@@ -41,4 +41,4 @@ nav:
   - Proyectos:
       - Inventario de activos con GLPI: proyectos/glpi.md
       - SIEM distribuido con Wazuh: proyectos/wazuh.md
-      - Lab de Active Directory: proyectos/lab-ad.md
+      - Lab de identidad híbrida: proyectos/lab-ad.md
