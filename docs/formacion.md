@@ -30,7 +30,7 @@ certificación eJPTv2.
 ### CFGS en Administración de Sistemas Informáticos en Red
 **IES Leonardo Da Vinci**
 
-Sistemas Linux y Windows, redes y virtualización, cloud con OpenStack y AWS,
+Sistemas Linux y Windows, redes y virtualización, cloud con [OpenStack](proyectos/openstack.md) y AWS,
 bases de datos y fundamentos de ciberseguridad: firewalls, proxies y
 criptografía. El segundo curso, compaginado con un puesto de técnico de campo.
 
@@ -67,6 +67,15 @@ un 9,15.
     sobre Proxmox.
 
     [:octicons-arrow-right-24: Ver el writeup](proyectos/lab-ad.md)
+
+-   :material-cloud-cog-outline:{ .lg .middle } **Cloud privado con OpenStack**
+
+    ---
+
+    Nube IaaS en un solo nodo con Kolla-Ansible, anidada en ESXi. La espina
+    que me quedó del ciclo, donde usábamos un OpenStack como cloud privado.
+
+    [:octicons-arrow-right-24: Ver el writeup](proyectos/openstack.md)
 
 -   :material-book-open-variant:{ .lg .middle } **Este portfolio**
 

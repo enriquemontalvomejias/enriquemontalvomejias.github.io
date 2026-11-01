@@ -472,7 +472,7 @@ body {
 }
 
 .pf-chips li,
-.pf-proj__stack span,
+.pf-proj__stack > span,
 .pf-hero__stack li {
   display: inline-block;
   margin: 0;
@@ -989,6 +989,11 @@ body {
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: .3rem;
+}
+
+.pf-proj__stack > .pf-proj__more {
+  border-style: dashed;
+  color: var(--pf-muted);
 }
 
 .pf-proj__go {
@@ -1729,6 +1734,35 @@ body {
   border: 1px solid var(--pf-line);
   border-radius: .35rem;
   background: var(--pf-well);
+}
+
+/* Avisos de tipo warning: ámbar, como el resto de cosas "a tener en cuenta" */
+
+.md-content .md-typeset .admonition.warning,
+.md-content .md-typeset details.warning { border-left-color: var(--pf-amber); }
+
+.md-content .md-typeset .admonition.warning > .admonition-title::before,
+.md-content .md-typeset details.warning > summary::before { background-color: var(--pf-amber); }
+
+/* Capturas en los writeups. Con pie de foto:
+   <figure markdown>
+     ![Horizon con la instancia activa](img/openstack/horizon.png)
+     <figcaption>Horizon con la instancia activa.</figcaption>
+   </figure> */
+
+.pf-writeup .md-typeset img {
+  border: 1px solid var(--pf-line);
+  border-radius: .35rem;
+}
+
+.pf-writeup .md-typeset figure { margin: 2rem 0; }
+
+.pf-writeup .md-typeset figcaption {
+  max-width: none;
+  margin-top: .6rem;
+  color: var(--pf-muted);
+  font-size: .7rem;
+  font-style: normal;
 }
 
 

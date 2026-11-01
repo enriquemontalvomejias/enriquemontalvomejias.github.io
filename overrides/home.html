@@ -164,8 +164,13 @@
               <span class="pf-proj__title">{{ p.title }}</span>
               <span class="pf-proj__summary">{{ pr.resumen }}</span>
             </span>
+            {#- En la portada, como mucho 6 tecnologías; el resto, en el writeup -#}
+            {%- set maxchips = 6 %}
             <span class="pf-proj__stack">
-              {%- for s in pr.stack %}<span>{{ s }}</span>{% endfor %}
+              {%- for s in pr.stack[:maxchips] %}<span>{{ s }}</span>{% endfor %}
+              {%- if pr.stack | length > maxchips %}
+              <span class="pf-proj__more" title="{{ pr.stack[maxchips:] | join(', ') }}">+{{ pr.stack | length - maxchips }}</span>
+              {%- endif %}
             </span>
             <span class="pf-proj__go" aria-hidden="true">{% include ".icons/material/arrow-right.svg" %}</span>
           </a>

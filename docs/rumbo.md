@@ -25,6 +25,7 @@ pasa.
 - [x] Curso Zscaler EDU-200 · sep 2026
 - [x] Portfolio técnico publicado · sep 2026
 - [x] Inicio del máster en Ciberseguridad e IA · oct 2026
+- [x] [Cloud privado IaaS con OpenStack](proyectos/openstack.md) · oct 2026
 
 </div>
 
@@ -76,4 +77,4 @@ pasa.
 
 </div>
 
-*Última revisión: octubre de 2026. Esta página se actualiza a medida que avanzo.*
+*Última revisión: noviembre de 2026. Esta página se actualiza a medida que avanzo.*
