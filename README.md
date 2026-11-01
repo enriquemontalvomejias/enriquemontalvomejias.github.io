@@ -50,3 +50,9 @@ Encima de Material hay plantillas propias para que se vea como un portfolio y no
 Sale solo en la portada (con su filtro), en la terminal (`ls`, `cat`, `open`) y en el enlace de "Siguiente proyecto" de los demás writeups.
 
 Para verlo en local: `pip install mkdocs-material` y `mkdocs serve`.
+
+### Miniaturas para compartir
+
+Al compartir un enlace en LinkedIn, WhatsApp o similares sale una miniatura. `scripts/miniaturas.py` genera la general y una por proyecto (título, estado, resumen y stack) a partir del front matter, y el workflow de despliegue la ejecuta antes de publicar. Al añadir un proyecto, su miniatura aparece sola.
+
+Para verlas en local: `pip install pillow` y `python scripts/miniaturas.py`, que las deja en `docs/og/` (ignorada por Git).

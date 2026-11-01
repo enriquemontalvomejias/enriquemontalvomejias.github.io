@@ -12,5 +12,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install mkdocs-material
+      - run: pip install mkdocs-material pillow
+      # Si fallaran las miniaturas, la web se publica igual
+      - run: python scripts/miniaturas.py
+        continue-on-error: true
       - run: mkdocs gh-deploy --force

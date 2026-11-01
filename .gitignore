@@ -1,3 +1,5 @@
 ﻿.venv/
 site/
 __pycache__/
+# Miniaturas para compartir: se generan en el despliegue (scripts/miniaturas.py)
+docs/og/

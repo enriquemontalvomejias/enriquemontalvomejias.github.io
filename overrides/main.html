@@ -15,11 +15,23 @@
   <meta property="og:title" content="{% if page.is_homepage %}Enrique Montalvo Mejías · Sistemas y ciberseguridad{% else %}{{ page.title }} · Enrique Montalvo{% endif %}">
   <meta property="og:description" content="{% if page.meta and page.meta.proyecto %}{{ page.meta.proyecto.resumen }}{% else %}Writeups de proyectos reales y laboratorios: arquitectura, decisiones y lo que se rompió por el camino.{% endif %}">
   <meta property="og:url" content="{{ page.canonical_url }}">
-  <meta property="og:image" content="{{ config.site_url }}og.png">
+  {#- Miniatura para compartir: la del proyecto en los writeups, la general en
+      el resto. Las genera scripts/miniaturas.py en cada despliegue. -#}
+  {%- if page.meta and page.meta.proyecto %}
+    {%- set og_image = config.site_url ~ "og/" ~ page.file.name ~ ".png" %}
+    {%- set og_alt = page.title ~ ": " ~ page.meta.proyecto.resumen %}
+  {%- else %}
+    {%- set og_image = config.site_url ~ "og/portfolio.png" %}
+    {%- set og_alt = "Enrique Montalvo Mejías, sistemas, infraestructura y ciberseguridad" %}
+  {%- endif %}
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image:alt" content="{{ og_alt }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ og_image }}">
   <meta name="theme-color" content="#0e1726">
+  <link rel="apple-touch-icon" href="{{ 'assets/apple-touch-icon.png' | url }}">
   <link rel="preload" href="{{ 'assets/fonts/IBMPlexSans-Regular-Latin1.woff2' | url }}" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{{ 'assets/fonts/IBMPlexSansCondensed-SemiBold-Latin1.woff2' | url }}" as="font" type="font/woff2" crossorigin>
   <script>document.documentElement.classList.add("pf-js")</script>

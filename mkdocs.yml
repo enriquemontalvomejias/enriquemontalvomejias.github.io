@@ -7,6 +7,7 @@ theme:
   language: es
   # Las fuentes (IBM Plex) van alojadas en la propia web: docs/assets/fonts
   font: false
+  favicon: assets/favicon.png
   icon:
     logo: material/shield-lock-outline
   palette:
