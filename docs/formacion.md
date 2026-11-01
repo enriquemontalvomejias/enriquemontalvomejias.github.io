@@ -1,6 +1,8 @@
 ---
+template: pagina.html
 hide:
   - navigation
+  - toc
 ---
 
 # Formación

@@ -1,0 +1,9 @@
+{#- Stack del proyecto, en la barra lateral del writeup. Recibe "pr". -#}
+{%- if pr and pr.stack %}
+<div class="pf-sidestack">
+  <p class="pf-sidestack__title">Stack</p>
+  <ul class="pf-chips">
+    {%- for s in pr.stack %}<li>{{ s }}</li>{% endfor %}
+  </ul>
+</div>
+{%- endif %}

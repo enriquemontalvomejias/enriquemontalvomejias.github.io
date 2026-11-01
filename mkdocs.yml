@@ -5,9 +5,8 @@ theme:
   name: material
   custom_dir: overrides
   language: es
-  font:
-    text: Inter
-    code: JetBrains Mono
+  # Las fuentes (IBM Plex) van alojadas en la propia web: docs/assets/fonts
+  font: false
   icon:
     logo: material/shield-lock-outline
   palette:
@@ -15,13 +14,11 @@ theme:
       primary: custom
       accent: custom
   features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
     - content.code.copy
-    - search.suggest
 extra_css:
   - stylesheets/extra.css
+extra_javascript:
+  - javascripts/portfolio.js
 markdown_extensions:
   - admonition
   - attr_list
@@ -45,15 +42,20 @@ extra:
   social:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/enrique-montalvo-mejias/
+      name: LinkedIn
     - icon: fontawesome/brands/github
       link: https://github.com/enriquemontalvomejias
+      name: GitHub
+# Para añadir un proyecto: crea su .md en docs/proyectos/ con el bloque
+# "proyecto:" en el front matter y añádelo aquí. Sale solo en la portada,
+# con sus filtros, y en la terminal.
 nav:
   - Inicio: index.md
-  - Trayectoria: trayectoria.md
-  - Formación: formacion.md
   - Proyectos:
       - Inventario de activos con GLPI: proyectos/glpi.md
       - Lab de identidad híbrida: proyectos/lab-ad.md
       - SIEM distribuido con Wazuh: proyectos/wazuh.md
       - MetroASIR (TFG): proyectos/metroasir.md
+  - Trayectoria: trayectoria.md
+  - Formación: formacion.md
   - Rumbo: rumbo.md

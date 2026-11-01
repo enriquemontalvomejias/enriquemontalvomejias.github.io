@@ -1,0 +1,222 @@
+{% extends "main.html" %}
+
+{#-
+  Portada. El texto vive en el front matter de docs/index.md y los
+  proyectos salen solos de los writeups con "proyecto:" en el front matter.
+-#}
+
+{% block site_nav %}{% endblock %}
+
+{% block container %}
+{%- set m = page.meta -%}
+{%- set home = nav.homepage.url | url -%}
+{%- if not home.endswith("/") -%}{%- set home = home ~ "/" -%}{%- endif -%}
+
+{#- Proyectos (en el orden del nav), categorías y datos para la terminal -#}
+{%- set ns = namespace(projects=[], tags=[], tproj=[], tpages=[]) -%}
+{%- for p in nav.pages -%}
+  {%- if p.meta and p.meta.proyecto -%}
+    {%- set pr = p.meta.proyecto -%}
+    {%- set ns.projects = ns.projects + [p] -%}
+    {%- for t in pr.categorias -%}
+      {%- if t not in ns.tags -%}{%- set ns.tags = ns.tags + [t] -%}{%- endif -%}
+    {%- endfor -%}
+    {%- set ns.tproj = ns.tproj + [{
+      "slug": p.file.name,
+      "title": p.title,
+      "url": p.url | url,
+      "summary": pr.resumen,
+      "status": pr.estado,
+      "context": pr.contexto,
+      "dates": pr.fechas or "",
+      "stack": pr.stack or []
+    }] -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- for s in m.seguir or [] -%}
+  {%- for p in nav.pages -%}
+    {%- if p.file.src_uri == s.pagina -%}
+      {%- set ns.tpages = ns.tpages + [{"slug": p.file.name, "title": p.title, "url": p.url | url, "summary": s.texto}] -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- set term = {
+  "whoami": m.terminal.whoami,
+  "stack": m.hero.stack,
+  "projects": ns.tproj,
+  "pages": ns.tpages,
+  "social": config.extra.social | map(attribute="link") | list,
+  "socialNames": config.extra.social | map(attribute="name") | list
+} -%}
+
+<div class="pf-page pf-home">
+
+  {#- ───────────── Hero ───────────── -#}
+  <section class="pf-hero" aria-labelledby="pf-hero-name">
+    <canvas class="pf-topology" data-pf-topology aria-hidden="true"></canvas>
+    <div class="pf-wrap pf-hero__grid">
+      <div class="pf-hero__intro">
+        {%- set parts = m.hero.nombre.split(" ", 1) %}
+        <h1 class="pf-hero__name" id="pf-hero-name">
+          <span class="pf-hero__line"><span>{{ parts[0] }}</span></span>
+          <span class="pf-hero__line"><span>{{ parts[1] }}</span></span>
+        </h1>
+        <p class="pf-hero__lead">{{ m.hero.lead }}</p>
+        <ul class="pf-hero__stack" aria-label="Tecnologías principales">
+          {%- for s in m.hero.stack %}<li>{{ s }}</li>{% endfor %}
+        </ul>
+        <div class="pf-hero__actions">
+          <a class="pf-btn pf-btn--primary" href="#proyectos">Ver proyectos</a>
+          {%- for s in m.seguir or [] %}{% if loop.first %}
+            {%- for p in nav.pages %}{% if p.file.src_uri == s.pagina %}
+          <a class="pf-btn" href="{{ p.url | url }}">Mi trayectoria</a>
+            {%- endif %}{% endfor %}
+          {%- endif %}{% endfor %}
+          {%- for social in config.extra.social %}{% if loop.first %}
+          <a class="pf-btn pf-btn--ghost" href="{{ social.link }}" target="_blank" rel="me noopener">
+            {% include ".icons/" ~ social.icon ~ ".svg" %}<span>{{ social.name }}</span>
+          </a>
+          {%- endif %}{% endfor %}
+        </div>
+      </div>
+
+      <div class="pf-term" data-pf-terminal>
+        <div class="pf-term__window">
+          <div class="pf-term__bar">
+            <span class="pf-term__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="pf-term__title">kike@kiceland: ~</span>
+          </div>
+          <div class="pf-term__screen" role="log" aria-live="polite" aria-label="Salida de la terminal">
+            <noscript>
+              <p class="pf-term__line">La terminal necesita JavaScript. Tienes todo el contenido más abajo.</p>
+            </noscript>
+          </div>
+          <form class="pf-term__form" autocomplete="off" hidden>
+            <label class="pf-term__prompt" for="pf-term-input">
+              <span class="t-green">kike@kiceland</span><span class="t-dim">:</span><span class="t-cyan">~</span><span class="t-dim">$</span>
+              <span class="pf-sr">Escribe un comando</span>
+            </label>
+            <input class="pf-term__input" id="pf-term-input" type="text" spellcheck="false"
+                   autocapitalize="off" autocorrect="off" enterkeyhint="send" aria-describedby="pf-term-help">
+          </form>
+        </div>
+        <div class="pf-term__hints" id="pf-term-help" hidden>
+          <span>Prueba</span>
+          <button type="button" data-cmd="whoami">whoami</button>
+          <button type="button" data-cmd="ls">ls</button>
+          <button type="button" data-cmd="cat {{ ns.tproj[0].slug if ns.tproj else 'rumbo' }}">cat {{ ns.tproj[0].slug if ns.tproj else 'rumbo' }}</button>
+          <button type="button" data-cmd="help">help</button>
+        </div>
+        <script type="application/json" id="pf-term-data">{{ term | tojson }}</script>
+      </div>
+    </div>
+  </section>
+
+  {#- ───────────── Cifras ───────────── -#}
+  {%- if m.cifras %}
+  <section class="pf-figures" aria-label="En cifras">
+    <ul class="pf-wrap pf-figures__list">
+      {%- for c in m.cifras %}
+      <li class="pf-figure" data-reveal style="--i: {{ loop.index0 }}">
+        <strong class="pf-figure__value" data-pf-count>{{ c.valor }}</strong>
+        <span class="pf-figure__label">{{ c.texto }}</span>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endif %}
+
+  {#- ───────────── Proyectos ───────────── -#}
+  <section class="pf-section pf-projects" id="proyectos" aria-labelledby="pf-proj-title">
+    <div class="pf-wrap">
+      <header class="pf-section__head" data-reveal>
+        <h2 class="pf-section__title" id="pf-proj-title">Proyectos</h2>
+        <p class="pf-section__lead">{{ m.proyectos.intro }}</p>
+      </header>
+
+      <div class="pf-filters" data-pf-filters role="group" aria-label="Filtrar proyectos por área" hidden>
+        <button type="button" class="pf-filter" data-filter="*" aria-pressed="true">
+          Todos <span class="pf-filter__n">{{ ns.projects | length }}</span>
+        </button>
+        {%- for t in ns.tags %}
+          {%- set c = namespace(n=0) %}
+          {%- for p in ns.projects %}{% if t in p.meta.proyecto.categorias %}{% set c.n = c.n + 1 %}{% endif %}{% endfor %}
+        <button type="button" class="pf-filter" data-filter="{{ t | lower | replace(' ', '-') }}" aria-pressed="false">
+          {{ t }} <span class="pf-filter__n">{{ c.n }}</span>
+        </button>
+        {%- endfor %}
+      </div>
+      <p class="pf-sr" aria-live="polite" data-pf-filter-status></p>
+
+      <ul class="pf-projlist">
+        {%- for p in ns.projects %}
+          {%- set pr = p.meta.proyecto %}
+        <li class="pf-proj" data-reveal style="--i: {{ loop.index0 }}"
+            data-tags="{{ pr.categorias | map('lower') | map('replace', ' ', '-') | join(' ') }}">
+          <a class="pf-proj__link" href="{{ p.url | url }}">
+            <span class="pf-proj__icon" aria-hidden="true">{% include ".icons/" ~ (pr.icono or "material/folder-outline") ~ ".svg" %}</span>
+            <span class="pf-proj__main">
+              <span class="pf-proj__meta">
+                <span class="pf-status pf-status--{{ pr.estado | lower | replace(' ', '-') }}">{{ pr.estado }}</span>
+                <span>{{ pr.contexto }}</span>
+                {%- if pr.fechas %}<span>{{ pr.fechas }}</span>{% endif %}
+              </span>
+              <span class="pf-proj__title">{{ p.title }}</span>
+              <span class="pf-proj__summary">{{ pr.resumen }}</span>
+            </span>
+            <span class="pf-proj__stack">
+              {%- for s in pr.stack %}<span>{{ s }}</span>{% endfor %}
+            </span>
+            <span class="pf-proj__go" aria-hidden="true">{% include ".icons/material/arrow-right.svg" %}</span>
+          </a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+
+  {#- ───────────── En qué trabajo ───────────── -#}
+  {%- if m.areas %}
+  <section class="pf-section pf-areas" aria-labelledby="pf-areas-title">
+    <div class="pf-wrap pf-areas__grid">
+      <header class="pf-areas__head" data-reveal>
+        <h2 class="pf-section__title" id="pf-areas-title">En qué trabajo</h2>
+        <div class="pf-areas__intro">{{ page.content }}</div>
+      </header>
+      <ul class="pf-areas__list">
+        {%- for a in m.areas %}
+        <li class="pf-area" data-reveal style="--i: {{ loop.index0 }}">
+          <span class="pf-area__icon" aria-hidden="true">{% include ".icons/" ~ a.icono ~ ".svg" %}</span>
+          <h3 class="pf-area__title">{{ a.titulo }}</h3>
+          <p class="pf-area__text">{{ a.texto }}</p>
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+  {%- endif %}
+
+  {#- ───────────── Sigue leyendo ───────────── -#}
+  {%- if m.seguir %}
+  <section class="pf-section pf-more" aria-labelledby="pf-more-title">
+    <div class="pf-wrap">
+      <h2 class="pf-section__title" id="pf-more-title" data-reveal>Sigue leyendo</h2>
+      <ul class="pf-more__list">
+        {%- for s in m.seguir %}
+          {%- for p in nav.pages %}{% if p.file.src_uri == s.pagina %}
+        <li data-reveal style="--i: {{ loop.index0 }}">
+          <a class="pf-more__link" href="{{ p.url | url }}">
+            <span class="pf-more__title">{{ p.title }}</span>
+            <span class="pf-more__text">{{ s.texto }}</span>
+            <span class="pf-more__icon" aria-hidden="true">{% include ".icons/material/arrow-right.svg" %}</span>
+          </a>
+        </li>
+          {%- endif %}{% endfor %}
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+  {%- endif %}
+
+</div>
+{% endblock %}

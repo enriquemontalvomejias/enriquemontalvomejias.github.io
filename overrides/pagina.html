@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+
+{#-
+  Páginas personales (Trayectoria, Formación, Rumbo): ancho completo, sin
+  barras laterales. El contenido sigue siendo el Markdown de siempre.
+-#}
+
+{% block site_nav %}{% endblock %}
+
+{% block container %}
+  <div class="md-content pf-pagina" data-md-component="content">
+    <article class="md-content__inner md-typeset">
+      {% include "partials/content.html" %}
+    </article>
+  </div>
+{% endblock %}

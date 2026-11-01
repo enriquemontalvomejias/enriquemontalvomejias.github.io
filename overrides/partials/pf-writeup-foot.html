@@ -1,0 +1,28 @@
+{%- set pr = page.meta.proyecto -%}
+{#- Lista de proyectos en el orden del nav, para enlazar el siguiente. -#}
+{%- set ns = namespace(projects=[], idx=0) -%}
+{%- for p in nav.pages -%}
+  {%- if p.meta and p.meta.proyecto -%}
+    {%- if p.url == page.url -%}{%- set ns.idx = ns.projects | length -%}{%- endif -%}
+    {%- set ns.projects = ns.projects + [p] -%}
+  {%- endif -%}
+{%- endfor -%}
+<aside class="pf-wfoot" aria-label="Más sobre este proyecto">
+  {%- if pr.stack %}
+  <div class="pf-wfoot__stack">
+    <p class="pf-wfoot__title">Stack</p>
+    <ul class="pf-chips">
+      {%- for s in pr.stack %}<li>{{ s }}</li>{% endfor %}
+    </ul>
+  </div>
+  {%- endif %}
+  {%- if ns.projects | length > 1 %}
+    {%- set nxt = ns.projects[(ns.idx + 1) % (ns.projects | length)] %}
+    <a class="pf-next" href="{{ nxt.url | url }}">
+      <span class="pf-next__label">Siguiente proyecto</span>
+      <span class="pf-next__title">{{ nxt.title }}</span>
+      <span class="pf-next__summary">{{ nxt.meta.proyecto.resumen }}</span>
+      <span class="pf-next__icon" aria-hidden="true">{% include ".icons/material/arrow-right.svg" %}</span>
+    </a>
+  {%- endif %}
+</aside>

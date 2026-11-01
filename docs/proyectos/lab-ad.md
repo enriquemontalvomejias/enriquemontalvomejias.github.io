@@ -1,3 +1,16 @@
+---
+proyecto:
+  resumen: >-
+    AD local sincronizado con Entra ID, MFA obligatorio y unión al dominio
+    en remoto con Tailscale.
+  icono: material/account-sync
+  contexto: Lab personal
+  estado: Completado
+  fechas: abr–may 2026
+  categorias: [Identidad, Cloud]
+  stack: [Windows Server 2025, Active Directory, Entra Connect, MFA, Tailscale, Proxmox]
+---
+
 # Laboratorio de identidad híbrida
 
 Active Directory local sincronizado con Microsoft Entra ID, MFA obligatorio y

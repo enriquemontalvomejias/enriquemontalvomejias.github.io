@@ -1,0 +1,15 @@
+{%- set pr = page.meta.proyecto -%}
+{%- set home = nav.homepage.url | url -%}
+{%- if not home.endswith("/") -%}{%- set home = home ~ "/" -%}{%- endif -%}
+<div class="pf-progress" aria-hidden="true"><span></span></div>
+<div class="pf-whead">
+  <a class="pf-back" href="{{ home }}#proyectos">
+    {% include ".icons/material/arrow-left.svg" %}
+    <span>Todos los proyectos</span>
+  </a>
+  <p class="pf-wmeta">
+    <span class="pf-status pf-status--{{ pr.estado | lower | replace(' ', '-') }}">{{ pr.estado }}</span>
+    <span>{{ pr.contexto }}</span>
+    {%- if pr.fechas %}<span>{{ pr.fechas }}</span>{% endif %}
+  </p>
+</div>

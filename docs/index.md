@@ -1,141 +1,75 @@
 ---
-hide:
-  - navigation
-  - toc
----
+template: home.html
 
-<section class="hero">
-  <p class="hero-kicker">Sistemas · Ciberseguridad · Madrid</p>
-  <h1>Enrique Montalvo Mejías</h1>
-  <p class="hero-lead">
+# ── Cabecera ────────────────────────────────────────────────────────────
+hero:
+  nombre: Enrique Montalvo Mejías
+  lead: >-
     Consultor de sistemas y ciberseguridad en Vicmartin. He trabajado del rack
     al cloud, y documento cada paso: la arquitectura, las decisiones y lo que
     se rompió por el camino.
-  </p>
-  <div class="hero-stack">
-    <span>Zscaler</span>
-    <span>Zero Trust</span>
-    <span>Entra ID</span>
-    <span>Active Directory</span>
-    <span>Wazuh</span>
-    <span>PowerShell</span>
-  </div>
-  <div class="hero-actions">
-    <a class="md-button md-button--primary" href="#proyectos">Ver proyectos</a>
-    <a class="md-button" href="trayectoria/">Mi trayectoria</a>
-    <a class="md-button" href="https://www.linkedin.com/in/enrique-montalvo-mejias/">LinkedIn</a>
-  </div>
-</section>
+  stack: [Zscaler, Zero Trust, Entra ID, Active Directory, Wazuh, PowerShell]
+
+# Lo que responde la terminal al escribir "whoami"
+terminal:
+  whoami:
+    - Enrique Montalvo Mejías (kike)
+    - Consultor de sistemas y ciberseguridad en Vicmartin, Madrid.
+    - "Objetivo: seguridad operativa. Detección, análisis de alertas y respuesta."
+
+# ── Cifras (el número se anima; admite "~" delante y decimales con coma) ──
+cifras:
+  - valor: "5"
+    texto: entornos de trabajo distintos, del rack al cloud
+  - valor: "~600"
+    texto: endpoints inventariados con GLPI
+  - valor: "~20"
+    texto: organizaciones cliente en esa misma plataforma
+  - valor: "9,15"
+    texto: de nota en el TFG, MetroASIR
+
+# ── Proyectos: salen solos de los writeups con "proyecto:" ──────────────
+proyectos:
+  intro: >-
+    Writeups de proyectos reales y laboratorios: arquitectura, decisiones y lo
+    que se rompió por el camino.
+
+# ── En qué trabajo (el texto de abajo, fuera del front matter, va de intro) ─
+areas:
+  - titulo: Seguridad y acceso
+    icono: material/shield-lock
+    texto: >-
+      Zscaler ZIA, ZPA, ZDX y Client Connector en varios tenants de cliente:
+      segmentación Zero Trust, políticas de acceso e informes QBR. Sophos para
+      endpoints y VPN.
+  - titulo: Identidad
+    icono: material/account-key
+    texto: >-
+      Microsoft Entra ID e híbrido con Active Directory. Accesos condicionales,
+      grupos de seguridad, sincronización e Intune.
+  - titulo: Infraestructura
+    icono: material/server-network
+    texto: >-
+      Windows Server, VMware vSphere, Hyper-V y Proxmox. Cloud en Azure y AWS.
+      Automatización con PowerShell y despliegue por GPO.
+  - titulo: Detección
+    icono: material/radar
+    texto: >-
+      Wazuh como SIEM/XDR en arquitectura distribuida de dos nodos. Auditoría
+      de Active Directory con Purple Knight.
+
+# ── Sigue leyendo (también alimenta "cat" y "open" en la terminal) ───────
+seguir:
+  - pagina: trayectoria.md
+    texto: >-
+      Cinco entornos distintos, del rack al cloud. Un perfil comodín con rumbo
+      a la ciberseguridad.
+  - pagina: formacion.md
+    texto: ASIR, el máster en curso, certificaciones y los labs que monto por mi cuenta.
+  - pagina: rumbo.md
+    texto: Hacia dónde voy, con fechas y lo que ya está tachado.
+---
 
 Trabajo entre la infraestructura del día a día, en entornos on-premise, híbridos
 y cloud, y la seguridad, que cada vez pesa más. Mi objetivo es la seguridad
 operativa: detección, análisis de alertas y respuesta.
-
-## Proyectos
-
-<div class="grid cards two" markdown>
-
--   :material-database-search:{ .lg .middle } **Inventario multi-tenant con GLPI**
-
-    ---
-
-    Plataforma de inventario para una veintena de organizaciones cliente y
-    unos 600 endpoints. Despliegue por GPO e Intune.
-
-    [:octicons-arrow-right-24: Leer el writeup](proyectos/glpi.md)
-
--   :material-account-sync:{ .lg .middle } **Laboratorio de identidad híbrida**
-
-    ---
-
-    AD local sincronizado con Entra ID, MFA obligatorio y unión al dominio
-    en remoto con Tailscale.
-
-    [:octicons-arrow-right-24: Leer el writeup](proyectos/lab-ad.md)
-
--   :material-radar:{ .lg .middle } **SIEM distribuido con Wazuh**
-
-    ---
-
-    Despliegue en dos nodos para monitorizar servidores de cliente.
-    *En curso.*
-
-    [:octicons-arrow-right-24: Ver el estado](proyectos/wazuh.md)
-
--   :material-subway-variant:{ .lg .middle } **MetroASIR**
-
-    ---
-
-    Infraestructura en Proxmox segmentada en WAN, LAN y DMZ con pfSense y
-    publicada con Cloudflare Tunnel. TFG junto a Álvaro García, calificado
-    con un 9,15.
-
-    [:octicons-arrow-right-24: Leer el Writeup](proyectos/metroasir.md)
-
-</div>
-
-## En qué trabajo
-
-<div class="grid cards two" markdown>
-
--   :material-shield-lock:{ .lg .middle } **Seguridad y acceso**
-
-    ---
-
-    Zscaler ZIA, ZPA, ZDX y Client Connector en varios tenants de cliente:
-    segmentación Zero Trust, políticas de acceso e informes QBR. Sophos para
-    endpoints y VPN.
-
--   :material-account-key:{ .lg .middle } **Identidad**
-
-    ---
-
-    Microsoft Entra ID e híbrido con Active Directory. Accesos condicionales,
-    grupos de seguridad, sincronización e Intune.
-
--   :material-server-network:{ .lg .middle } **Infraestructura**
-
-    ---
-
-    Windows Server, VMware vSphere, Hyper-V y Proxmox. Cloud en Azure y AWS.
-    Automatización con PowerShell y despliegue por GPO.
-
--   :material-radar:{ .lg .middle } **Detección**
-
-    ---
-
-    Wazuh como SIEM/XDR en arquitectura distribuida de dos nodos. Auditoría
-    de Active Directory con Purple Knight.
-
-</div>
-
-## Sigue leyendo
-
-<div class="grid cards" markdown>
-
--   :material-timeline-text:{ .lg .middle } **Trayectoria**
-
-    ---
-
-    Cinco entornos distintos, del rack al cloud. Un perfil comodín con rumbo
-    a la ciberseguridad.
-
-    [:octicons-arrow-right-24: Ver la trayectoria](trayectoria.md)
-
--   :material-school:{ .lg .middle } **Formación**
-
-    ---
-
-    ASIR, el máster en curso, certificaciones y los labs que monto por mi cuenta.
-
-    [:octicons-arrow-right-24: Ver la formación](formacion.md)
-
--   :material-compass:{ .lg .middle } **Rumbo**
-
-    ---
-
-    Hacia dónde voy, con fechas y lo que ya está tachado.
-
-    [:octicons-arrow-right-24: Ver la hoja de ruta](rumbo.md)
-
-</div>

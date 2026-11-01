@@ -1,0 +1,33 @@
+{%- set home = nav.homepage.url | url -%}
+{%- if not home.endswith("/") -%}{%- set home = home ~ "/" -%}{%- endif -%}
+<footer class="pf-footer">
+  <div class="pf-wrap pf-footer__inner">
+    <div class="pf-footer__id">
+      <p class="pf-footer__name">Enrique Montalvo Mejías</p>
+      <p class="pf-footer__role">Sistemas, infraestructura y ciberseguridad, desde Madrid.</p>
+    </div>
+    <nav class="pf-footer__nav" aria-label="Pie de página">
+      <ul>
+        <li><a href="{{ home }}">Inicio</a></li>
+        {%- for item in nav %}
+          {%- if item.is_section %}
+            <li><a href="{{ home }}#proyectos">{{ item.title }}</a></li>
+          {%- elif item.is_page and not item.is_homepage %}
+            <li><a href="{{ item.url | url }}">{{ item.title }}</a></li>
+          {%- endif %}
+        {%- endfor %}
+      </ul>
+      {%- if config.extra.social %}
+      <ul>
+        {%- for social in config.extra.social %}
+          <li><a href="{{ social.link }}" target="_blank" rel="me noopener">{{ social.name }}</a></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </nav>
+    <p class="pf-footer__meta">
+      Hecho con <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">Material for MkDocs</a>
+      y publicado con GitHub Actions. Tipografía IBM Plex, servida desde esta misma web.
+    </p>
+  </div>
+</footer>

@@ -1,3 +1,17 @@
+---
+proyecto:
+  resumen: >-
+    Infraestructura en Proxmox segmentada en WAN, LAN y DMZ con pfSense y
+    publicada con Cloudflare Tunnel. TFG junto a Álvaro García, calificado
+    con un 9,15.
+  icono: material/subway-variant
+  contexto: TFG
+  estado: Completado
+  fechas: 2024–2025
+  categorias: [Redes, Seguridad, Infraestructura]
+  stack: [Proxmox VE, pfSense, Apache + PHP, MariaDB, Cloudflare Tunnel, Tailscale]
+---
+
 # MetroASIR: aplicación web sobre infraestructura segmentada
 
 Aplicación web accesible sobre el Metro de Madrid, con cálculo de rutas óptimas y

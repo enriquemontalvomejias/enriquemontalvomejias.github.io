@@ -1,13 +1,67 @@
 {% extends "base.html" %}
 
+{#-
+  Plantilla base del portfolio.
+  - Cabecera y pie propios (partials/pf-header.html, partials/pf-footer.html).
+  - Los writeups (páginas con "proyecto:" en el front matter) se maquetan
+    como artículo: cabecera de proyecto, índice a la derecha y enlace al
+    siguiente proyecto.
+  - La portada y las páginas personales usan home.html y pagina.html.
+-#}
+
 {% block extrahead %}
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Enrique Montalvo">
   <meta property="og:title" content="{% if page.is_homepage %}Enrique Montalvo Mejías · Sistemas y ciberseguridad{% else %}{{ page.title }} · Enrique Montalvo{% endif %}">
-  <meta property="og:description" content="Writeups de proyectos reales y laboratorios: arquitectura, decisiones y lo que se rompió por el camino.">
+  <meta property="og:description" content="{% if page.meta and page.meta.proyecto %}{{ page.meta.proyecto.resumen }}{% else %}Writeups de proyectos reales y laboratorios: arquitectura, decisiones y lo que se rompió por el camino.{% endif %}">
   <meta property="og:url" content="{{ page.canonical_url }}">
   <meta property="og:image" content="{{ config.site_url }}og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0e1726">
+  <link rel="preload" href="{{ 'assets/fonts/IBMPlexSans-Regular-Latin1.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ 'assets/fonts/IBMPlexSansCondensed-SemiBold-Latin1.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("pf-js")</script>
+{% endblock %}
+
+{% block header %}
+  {% include "partials/pf-header.html" %}
+{% endblock %}
+
+{% block tabs %}{% endblock %}
+
+{% block site_nav %}
+  {% if page.meta and page.meta.proyecto %}
+    <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+          {% with pr = page.meta.proyecto %}
+            {% include "partials/pf-stack.html" %}
+          {% endwith %}
+          {% include "partials/toc.html" %}
+        </div>
+      </div>
+    </div>
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
+
+{% block container %}
+  {% if page.meta and page.meta.proyecto %}
+    <div class="md-content pf-writeup" data-md-component="content">
+      <article class="md-content__inner md-typeset">
+        {% include "partials/pf-writeup-head.html" %}
+        {% include "partials/content.html" %}
+        {% include "partials/pf-writeup-foot.html" %}
+      </article>
+    </div>
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
+
+{% block footer %}
+  {% include "partials/pf-footer.html" %}
 {% endblock %}

@@ -1,6 +1,8 @@
 ---
+template: pagina.html
 hide:
   - navigation
+  - toc
 ---
 
 # Rumbo
@@ -12,6 +14,10 @@ pasa.
 
 ## Hoja de ruta
 
+<div class="pf-roadmap" markdown>
+
+<div class="pf-roadmap__col pf-roadmap__col--hecho" markdown>
+
 ### Hecho
 
 - [x] Lab de identidad híbrida con AD, Entra Connect y Tailscale · may 2026
@@ -20,17 +26,29 @@ pasa.
 - [x] Portfolio técnico publicado · sep 2026
 - [x] Inicio del máster en Ciberseguridad e IA · oct 2026
 
+</div>
+
+<div class="pf-roadmap__col pf-roadmap__col--en-marcha" markdown>
+
 ### En marcha
 
 - [ ] Certificación ZDTA
 - [ ] Análisis de alertas en Wazuh: reglas, decoders y falsos positivos
 - [ ] Máster en Ciberseguridad e IA · hasta jun 2027
 
+</div>
+
+<div class="pf-roadmap__col pf-roadmap__col--siguiente" markdown>
+
 ### Siguiente
 
 - [ ] eJPTv2, con el máster
 - [ ] Casos reales de detección documentados de principio a fin
 - [ ] Asumir funciones de seguridad operativa: detección y respuesta
+
+</div>
+
+</div>
 
 ## Qué quiero aprender
 

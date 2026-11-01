@@ -1,3 +1,16 @@
+---
+proyecto:
+  resumen: >-
+    Plataforma de inventario para una veintena de organizaciones cliente y
+    unos 600 endpoints. Despliegue por GPO e Intune.
+  icono: material/database-search
+  contexto: Trabajo
+  estado: Completado
+  fechas: 2025–2026
+  categorias: [Infraestructura]
+  stack: [GLPI 11, MariaDB, Apache, Let's Encrypt, GPO, Intune]
+---
+
 # Inventario de activos multi-tenant con GLPI
 
 Diseño y despliegue de una plataforma de inventario de activos IT para una veintena

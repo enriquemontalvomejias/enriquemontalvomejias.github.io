@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+
+{% block site_nav %}{% endblock %}
+
+{% block container %}
+{%- set home = nav.homepage.url | url -%}
+{%- if not home.endswith("/") -%}{%- set home = home ~ "/" -%}{%- endif -%}
+<div class="pf-page pf-404">
+  <div class="pf-wrap">
+    <p class="pf-404__cmd" aria-hidden="true"><span class="t-green">kike@kiceland</span><span class="t-dim">:</span><span class="t-cyan">~</span><span class="t-dim">$</span> cd <span data-pf-path>esta-pagina</span></p>
+    <p class="pf-404__err" aria-hidden="true">cd: no existe el directorio</p>
+    <h1 class="pf-404__title">Esta página no existe</h1>
+    <p class="pf-404__text">Puede que el enlace esté mal escrito o que la página haya cambiado de sitio.</p>
+    <div class="pf-hero__actions">
+      <a class="pf-btn pf-btn--primary" href="{{ home }}">Ir al inicio</a>
+      <a class="pf-btn" href="{{ home }}#proyectos">Ver proyectos</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

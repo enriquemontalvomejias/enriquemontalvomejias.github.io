@@ -1,3 +1,15 @@
+---
+proyecto:
+  resumen: >-
+    Despliegue en dos nodos para monitorizar servidores de cliente.
+  icono: material/radar
+  contexto: Trabajo
+  estado: En curso
+  fechas: 2025–2026
+  categorias: [Seguridad, Cloud]
+  stack: [Wazuh manager, Wazuh indexer, Wazuh dashboard]
+---
+
 # SIEM distribuido con Wazuh
 
 Despliegue de Wazuh como SIEM/XDR en arquitectura distribuida de dos nodos, en
