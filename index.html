@@ -1,0 +1,440 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Sistemas, infraestructura y ciberseguridad">
+      
+      
+      
+        <link rel="canonical" href="https://enriquemontalvomejias.github.io/">
+      
+      
+      
+        <link rel="next" href="proyectos/glpi/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Enrique Montalvo</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Enrique Montalvo">
+  <meta property="og:title" content="Enrique Montalvo Mejías · Sistemas y ciberseguridad">
+  <meta property="og:description" content="Writeups de proyectos reales y laboratorios: arquitectura, decisiones y lo que se rompió por el camino.">
+  <meta property="og:url" content="https://enriquemontalvomejias.github.io/">
+  <meta property="og:image" content="https://enriquemontalvomejias.github.io/og/portfolio.png">
+  <meta property="og:image:alt" content="Enrique Montalvo Mejías, sistemas, infraestructura y ciberseguridad">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://enriquemontalvomejias.github.io/og/portfolio.png">
+  <meta name="theme-color" content="#0e1726">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/IBMPlexSans-Regular-Latin1.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/IBMPlexSansCondensed-SemiBold-Latin1.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("pf-js")</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+  <header class="pf-header" data-md-component="header">
+  <nav class="pf-nav pf-wrap" aria-label="Principal">
+    <a class="pf-brand" href="./" aria-current="page">
+      <span class="pf-brand__mark" aria-hidden="true">EM</span>
+      <span class="pf-brand__name">Enrique Montalvo</span>
+    </a>
+    <button class="pf-nav__toggle" type="button" aria-expanded="false" aria-controls="pf-menu">
+      <span class="pf-nav__bars" aria-hidden="true"><i></i><i></i></span>
+      <span class="pf-nav__toggle-label">Menú</span>
+    </button>
+    <div class="pf-nav__menu" id="pf-menu">
+      <ul class="pf-nav__links">
+            <li><a href="./#proyectos">Proyectos</a></li>
+            <li><a href="trayectoria/">Trayectoria</a></li>
+            <li><a href="formacion/">Formación</a></li>
+            <li><a href="rumbo/">Rumbo</a></li>
+      </ul>
+      <ul class="pf-nav__social">
+          <li>
+            <a href="https://www.linkedin.com/in/enrique-montalvo-mejias/" target="_blank" rel="me noopener" title="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+              <span class="pf-sr">LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/enriquemontalvomejias" target="_blank" rel="me noopener" title="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+              <span class="pf-sr">GitHub</span>
+            </a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+    <div class="md-container" data-md-component="container">
+      
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+          <div class="pf-page pf-home"><section class="pf-hero" aria-labelledby="pf-hero-name">
+    <canvas class="pf-topology" data-pf-topology aria-hidden="true"></canvas>
+    <div class="pf-wrap pf-hero__grid">
+      <div class="pf-hero__intro">
+        <h1 class="pf-hero__name" id="pf-hero-name">
+          <span class="pf-hero__line"><span>Enrique</span></span>
+          <span class="pf-hero__line"><span>Montalvo Mejías</span></span>
+        </h1>
+        <p class="pf-hero__lead">Consultor de sistemas y ciberseguridad en Vicmartin. He trabajado del rack al cloud, y documento cada paso: la arquitectura, las decisiones y lo que se rompió por el camino.</p>
+        <ul class="pf-hero__stack" aria-label="Tecnologías principales"><li>Zscaler</li><li>Zero Trust</li><li>Entra ID</li><li>Active Directory</li><li>Wazuh</li><li>PowerShell</li>
+        </ul>
+        <div class="pf-hero__actions">
+          <a class="pf-btn pf-btn--primary" href="#proyectos">Ver proyectos</a>
+          <a class="pf-btn" href="trayectoria/">Mi trayectoria</a>
+          <a class="pf-btn pf-btn--ghost" href="https://www.linkedin.com/in/enrique-montalvo-mejias/" target="_blank" rel="me noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg><span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="pf-term" data-pf-terminal>
+        <div class="pf-term__window">
+          <div class="pf-term__bar">
+            <span class="pf-term__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="pf-term__title">kike@kiceland: ~</span>
+          </div>
+          <div class="pf-term__screen" role="log" aria-live="polite" aria-label="Salida de la terminal">
+            <noscript>
+              <p class="pf-term__line">La terminal necesita JavaScript. Tienes todo el contenido más abajo.</p>
+            </noscript>
+          </div>
+          <form class="pf-term__form" autocomplete="off" hidden>
+            <label class="pf-term__prompt" for="pf-term-input">
+              <span class="t-green">kike@kiceland</span><span class="t-dim">:</span><span class="t-cyan">~</span><span class="t-dim">$</span>
+              <span class="pf-sr">Escribe un comando</span>
+            </label>
+            <input class="pf-term__input" id="pf-term-input" type="text" spellcheck="false"
+                   autocapitalize="off" autocorrect="off" enterkeyhint="send" aria-describedby="pf-term-help">
+          </form>
+        </div>
+        <div class="pf-term__hints" id="pf-term-help" hidden>
+          <span>Prueba</span>
+          <button type="button" data-cmd="whoami">whoami</button>
+          <button type="button" data-cmd="ls">ls</button>
+          <button type="button" data-cmd="cat glpi">cat glpi</button>
+          <button type="button" data-cmd="help">help</button>
+        </div>
+        <script type="application/json" id="pf-term-data">{"pages": [{"slug": "trayectoria", "summary": "Cinco entornos distintos, del rack al cloud. Un perfil comod\u00edn con rumbo a la ciberseguridad.", "title": "Trayectoria", "url": "trayectoria/"}, {"slug": "formacion", "summary": "ASIR, el m\u00e1ster en curso, certificaciones y los labs que monto por mi cuenta.", "title": "Formaci\u00f3n", "url": "formacion/"}, {"slug": "rumbo", "summary": "Hacia d\u00f3nde voy, con fechas y lo que ya est\u00e1 tachado.", "title": "Rumbo", "url": "rumbo/"}], "projects": [{"context": "Trabajo", "dates": "2025\u20132026", "slug": "glpi", "stack": ["GLPI 11", "MariaDB", "Apache", "Let\u0027s Encrypt", "GPO", "Intune"], "status": "Completado", "summary": "Plataforma de inventario para una veintena de organizaciones cliente y unos 600 endpoints. Despliegue por GPO e Intune.", "title": "Inventario de activos con GLPI", "url": "proyectos/glpi/"}, {"context": "Lab personal", "dates": "abr\u2013may 2026", "slug": "lab-ad", "stack": ["Windows Server 2025", "Active Directory", "Entra Connect", "MFA", "Tailscale", "Proxmox"], "status": "Completado", "summary": "AD local sincronizado con Entra ID, MFA obligatorio y uni\u00f3n al dominio en remoto con Tailscale.", "title": "Lab de identidad h\u00edbrida", "url": "proyectos/lab-ad/"}, {"context": "Trabajo", "dates": "2025\u20132026", "slug": "wazuh", "stack": ["Wazuh manager", "Wazuh indexer", "Wazuh dashboard"], "status": "En curso", "summary": "Despliegue en dos nodos para monitorizar servidores de cliente.", "title": "SIEM distribuido con Wazuh", "url": "proyectos/wazuh/"}, {"context": "Lab personal", "dates": "oct 2026", "slug": "openstack", "stack": ["OpenStack", "Kolla-Ansible", "Ansible", "Docker", "Debian 12", "VMware ESXi", "KVM", "Neutron", "Keystone", "Nova", "Glance", "Horizon"], "status": "En curso", "summary": "Nube privada IaaS en un solo nodo: ~30 servicios en contenedores con Kolla-Ansible sobre una VM anidada en ESXi, y una instancia con su IP privada y su IP flotante.", "title": "Cloud privado con OpenStack", "url": "proyectos/openstack/"}, {"context": "TFG", "dates": "2024\u20132025", "slug": "metroasir", "stack": ["Proxmox VE", "pfSense", "Apache + PHP", "MariaDB", "Cloudflare Tunnel", "Tailscale"], "status": "Completado", "summary": "Infraestructura en Proxmox segmentada en WAN, LAN y DMZ con pfSense y publicada con Cloudflare Tunnel. TFG junto a \u00c1lvaro Garc\u00eda, calificado con un 9,15.", "title": "MetroASIR (TFG)", "url": "proyectos/metroasir/"}], "social": ["https://www.linkedin.com/in/enrique-montalvo-mejias/", "https://github.com/enriquemontalvomejias"], "socialNames": ["LinkedIn", "GitHub"], "stack": ["Zscaler", "Zero Trust", "Entra ID", "Active Directory", "Wazuh", "PowerShell"], "whoami": ["Enrique Montalvo Mej\u00edas (kike)", "Consultor de sistemas y ciberseguridad en Vicmartin, Madrid.", "Objetivo: seguridad operativa. Detecci\u00f3n, an\u00e1lisis de alertas y respuesta."]}</script>
+      </div>
+    </div>
+  </section>
+  <section class="pf-figures" aria-label="En cifras">
+    <ul class="pf-wrap pf-figures__list">
+      <li class="pf-figure" data-reveal style="--i: 0">
+        <strong class="pf-figure__value" data-pf-count>5</strong>
+        <span class="pf-figure__label">entornos de trabajo distintos, del rack al cloud</span>
+      </li>
+      <li class="pf-figure" data-reveal style="--i: 1">
+        <strong class="pf-figure__value" data-pf-count>~600</strong>
+        <span class="pf-figure__label">endpoints inventariados con GLPI</span>
+      </li>
+      <li class="pf-figure" data-reveal style="--i: 2">
+        <strong class="pf-figure__value" data-pf-count>~20</strong>
+        <span class="pf-figure__label">organizaciones cliente en esa misma plataforma</span>
+      </li>
+      <li class="pf-figure" data-reveal style="--i: 3">
+        <strong class="pf-figure__value" data-pf-count>9,15</strong>
+        <span class="pf-figure__label">de nota en el TFG, MetroASIR</span>
+      </li>
+    </ul>
+  </section><section class="pf-section pf-projects" id="proyectos" aria-labelledby="pf-proj-title">
+    <div class="pf-wrap">
+      <header class="pf-section__head" data-reveal>
+        <h2 class="pf-section__title" id="pf-proj-title">Proyectos</h2>
+        <p class="pf-section__lead">Writeups de proyectos reales y laboratorios: arquitectura, decisiones y lo que se rompió por el camino.</p>
+      </header>
+
+      <div class="pf-filters" data-pf-filters role="group" aria-label="Filtrar proyectos por área" hidden>
+        <button type="button" class="pf-filter" data-filter="*" aria-pressed="true">
+          Todos <span class="pf-filter__n">5</span>
+        </button>
+        <button type="button" class="pf-filter" data-filter="infraestructura" aria-pressed="false">
+          Infraestructura <span class="pf-filter__n">3</span>
+        </button>
+        <button type="button" class="pf-filter" data-filter="identidad" aria-pressed="false">
+          Identidad <span class="pf-filter__n">1</span>
+        </button>
+        <button type="button" class="pf-filter" data-filter="cloud" aria-pressed="false">
+          Cloud <span class="pf-filter__n">3</span>
+        </button>
+        <button type="button" class="pf-filter" data-filter="seguridad" aria-pressed="false">
+          Seguridad <span class="pf-filter__n">2</span>
+        </button>
+        <button type="button" class="pf-filter" data-filter="redes" aria-pressed="false">
+          Redes <span class="pf-filter__n">1</span>
+        </button>
+      </div>
+      <p class="pf-sr" aria-live="polite" data-pf-filter-status></p>
+
+      <ul class="pf-projlist">
+        <li class="pf-proj" data-reveal style="--i: 0"
+            data-tags="infraestructura">
+          <a class="pf-proj__link" href="proyectos/glpi/">
+            <span class="pf-proj__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.68 12.32a4.49 4.49 0 0 0-6.36.01 4.49 4.49 0 0 0 0 6.36 4.51 4.51 0 0 0 5.57.63L21 22.39 22.39 21l-3.09-3.11c1.13-1.77.87-4.09-.62-5.57m-1.41 4.95c-.98.98-2.56.97-3.54 0-.97-.98-.97-2.56.01-3.54.97-.97 2.55-.97 3.53 0 .97.98.97 2.56 0 3.54M10.9 20.1a6.5 6.5 0 0 1-1.48-2.32C6.27 17.25 4 15.76 4 14v3c0 2.21 3.58 4 8 4-.4-.26-.77-.56-1.1-.9M4 9v3c0 1.68 2.07 3.12 5 3.7v-.2c0-.93.2-1.85.58-2.69C6.34 12.3 4 10.79 4 9m8-6C7.58 3 4 4.79 4 7c0 2 3 3.68 6.85 4h.05c1.2-1.26 2.86-2 4.6-2 .91 0 1.81.19 2.64.56A3.22 3.22 0 0 0 20 7c0-2.21-3.58-4-8-4"/></svg></span>
+            <span class="pf-proj__main">
+              <span class="pf-proj__meta">
+                <span class="pf-status pf-status--completado">Completado</span>
+                <span>Trabajo</span><span>2025–2026</span>
+              </span>
+              <span class="pf-proj__title">Inventario de activos con GLPI</span>
+              <span class="pf-proj__summary">Plataforma de inventario para una veintena de organizaciones cliente y unos 600 endpoints. Despliegue por GPO e Intune.</span>
+            </span>
+            <span class="pf-proj__stack"><span>GLPI 11</span><span>MariaDB</span><span>Apache</span><span>Let's Encrypt</span><span>GPO</span><span>Intune</span>
+            </span>
+            <span class="pf-proj__go" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span>
+          </a>
+        </li>
+        <li class="pf-proj" data-reveal style="--i: 1"
+            data-tags="identidad cloud">
+          <a class="pf-proj__link" href="proyectos/lab-ad/">
+            <span class="pf-proj__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 4C8.8 4 7 5.8 7 8s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4m0 10c-4.4 0-8 1.8-8 4v2h9.5c-.3-.8-.5-1.6-.5-2.5 0-1.2.3-2.3.9-3.4-.6 0-1.2-.1-1.9-.1m7 6c-1.4 0-2.5-1.1-2.5-2.5 0-.4.1-.8.3-1.1l-1.1-1.1c-.4.6-.7 1.4-.7 2.2 0 2.2 1.8 4 4 4V23l2.2-2.2-2.2-2.3zm0-6.5V12l-2.2 2.2 2.2 2.2V15c1.4 0 2.5 1.1 2.5 2.5 0 .4-.1.8-.3 1.1l1.1 1.1c.4-.6.7-1.4.7-2.2 0-2.2-1.8-4-4-4"/></svg></span>
+            <span class="pf-proj__main">
+              <span class="pf-proj__meta">
+                <span class="pf-status pf-status--completado">Completado</span>
+                <span>Lab personal</span><span>abr–may 2026</span>
+              </span>
+              <span class="pf-proj__title">Lab de identidad híbrida</span>
+              <span class="pf-proj__summary">AD local sincronizado con Entra ID, MFA obligatorio y unión al dominio en remoto con Tailscale.</span>
+            </span>
+            <span class="pf-proj__stack"><span>Windows Server 2025</span><span>Active Directory</span><span>Entra Connect</span><span>MFA</span><span>Tailscale</span><span>Proxmox</span>
+            </span>
+            <span class="pf-proj__go" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span>
+          </a>
+        </li>
+        <li class="pf-proj" data-reveal style="--i: 2"
+            data-tags="seguridad cloud">
+          <a class="pf-proj__link" href="proyectos/wazuh/">
+            <span class="pf-proj__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19.07 4.93-1.41 1.41A8.01 8.01 0 0 1 20 12a8 8 0 0 1-8 8 8 8 0 0 1-8-8c0-4.08 3.05-7.44 7-7.93v2.02C8.16 6.57 6 9.03 6 12a6 6 0 0 0 6 6 6 6 0 0 0 6-6c0-1.66-.67-3.16-1.76-4.24l-1.41 1.41C15.55 9.9 16 10.9 16 12a4 4 0 0 1-4 4 4 4 0 0 1-4-4c0-1.86 1.28-3.41 3-3.86v2.14c-.6.35-1 .98-1 1.72a2 2 0 0 0 2 2 2 2 0 0 0 2-2c0-.74-.4-1.38-1-1.72V2h-1A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-2.76-1.12-5.26-2.93-7.07"/></svg></span>
+            <span class="pf-proj__main">
+              <span class="pf-proj__meta">
+                <span class="pf-status pf-status--en-curso">En curso</span>
+                <span>Trabajo</span><span>2025–2026</span>
+              </span>
+              <span class="pf-proj__title">SIEM distribuido con Wazuh</span>
+              <span class="pf-proj__summary">Despliegue en dos nodos para monitorizar servidores de cliente.</span>
+            </span>
+            <span class="pf-proj__stack"><span>Wazuh manager</span><span>Wazuh indexer</span><span>Wazuh dashboard</span>
+            </span>
+            <span class="pf-proj__go" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span>
+          </a>
+        </li>
+        <li class="pf-proj" data-reveal style="--i: 3"
+            data-tags="cloud infraestructura">
+          <a class="pf-proj__link" href="proyectos/openstack/">
+            <span class="pf-proj__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 19c0 .34.03.67.08 1H6.5c-1.5 0-2.81-.5-3.89-1.57C1.54 17.38 1 16.09 1 14.58q0-1.95 1.17-3.48C3.34 9.57 4 9.43 5.25 9.15c.42-1.53 1.25-2.77 2.5-3.72S10.42 4 12 4c1.95 0 3.6.68 4.96 2.04S19 9.05 19 11c1.15.13 2.1.63 2.86 1.5.06.05.1.13.14.19-.9-.44-1.92-.69-3-.69-.69 0-1.37.11-2 .29V11c0-1.38-.5-2.56-1.46-3.54C14.56 6.5 13.38 6 12 6s-2.56.5-3.54 1.46C7.5 8.44 7 9.62 7 11h-.5c-.97 0-1.79.34-2.47 1.03-.69.68-1.03 1.5-1.03 2.47s.34 1.79 1.03 2.5c.68.66 1.5 1 2.47 1h5.58c-.05.33-.08.66-.08 1m11.83 1.64-1 1.73c-.07.13-.2.13-.33.13l-1.23-.5c-.27.18-.54.34-.84.47l-.19 1.32c-.02.12-.13.21-.24.21h-2c-.14 0-.24-.09-.26-.21l-.19-1.32c-.31-.12-.59-.29-.85-.47l-1.24.5c-.12 0-.25 0-.31-.13l-1-1.73a.26.26 0 0 1 .06-.32l1.06-.82a4.2 4.2 0 0 1 0-1l-1.06-.82a.25.25 0 0 1-.06-.32l1-1.73c.07-.13.2-.13.31-.13l1.24.5c.26-.18.55-.34.85-.47l.19-1.32A.26.26 0 0 1 18 14h2c.11 0 .22.09.23.21l.19 1.32c.31.12.58.29.85.47l1.23-.5c.13 0 .26 0 .32.13l1 1.73c.06.11.03.24-.06.32l-1.06.82c.03.17.04.33.04.5s-.02.33-.04.5l1.07.82c.09.08.12.21.06.32M20.5 19c0-.83-.68-1.5-1.5-1.5s-1.5.67-1.5 1.5.66 1.5 1.5 1.5 1.5-.67 1.5-1.5"/></svg></span>
+            <span class="pf-proj__main">
+              <span class="pf-proj__meta">
+                <span class="pf-status pf-status--en-curso">En curso</span>
+                <span>Lab personal</span><span>oct 2026</span>
+              </span>
+              <span class="pf-proj__title">Cloud privado con OpenStack</span>
+              <span class="pf-proj__summary">Nube privada IaaS en un solo nodo: ~30 servicios en contenedores con Kolla-Ansible sobre una VM anidada en ESXi, y una instancia con su IP privada y su IP flotante.</span>
+            </span>
+            <span class="pf-proj__stack"><span>OpenStack</span><span>Kolla-Ansible</span><span>Ansible</span><span>Docker</span><span>Debian 12</span><span>VMware ESXi</span>
+              <span class="pf-proj__more" title="KVM, Neutron, Keystone, Nova, Glance, Horizon">+6</span>
+            </span>
+            <span class="pf-proj__go" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span>
+          </a>
+        </li>
+        <li class="pf-proj" data-reveal style="--i: 4"
+            data-tags="redes seguridad infraestructura">
+          <a class="pf-proj__link" href="proyectos/metroasir/">
+            <span class="pf-proj__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 11h-5V6h5m-1.5 11a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5M11 11H6V6h5M7.5 17A1.5 1.5 0 0 1 6 15.5 1.5 1.5 0 0 1 7.5 14 1.5 1.5 0 0 1 9 15.5 1.5 1.5 0 0 1 7.5 17M12 2c-4.42 0-8 .5-8 4v9.5A3.5 3.5 0 0 0 7.5 19L6 20.5v.5h12v-.5L16.5 19a3.5 3.5 0 0 0 3.5-3.5V6c0-3.5-3.58-4-8-4"/></svg></span>
+            <span class="pf-proj__main">
+              <span class="pf-proj__meta">
+                <span class="pf-status pf-status--completado">Completado</span>
+                <span>TFG</span><span>2024–2025</span>
+              </span>
+              <span class="pf-proj__title">MetroASIR (TFG)</span>
+              <span class="pf-proj__summary">Infraestructura en Proxmox segmentada en WAN, LAN y DMZ con pfSense y publicada con Cloudflare Tunnel. TFG junto a Álvaro García, calificado con un 9,15.</span>
+            </span>
+            <span class="pf-proj__stack"><span>Proxmox VE</span><span>pfSense</span><span>Apache + PHP</span><span>MariaDB</span><span>Cloudflare Tunnel</span><span>Tailscale</span>
+            </span>
+            <span class="pf-proj__go" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="pf-section pf-areas" aria-labelledby="pf-areas-title">
+    <div class="pf-wrap pf-areas__grid">
+      <header class="pf-areas__head" data-reveal>
+        <h2 class="pf-section__title" id="pf-areas-title">En qué trabajo</h2>
+        <div class="pf-areas__intro"><p>Trabajo entre la infraestructura del día a día, en entornos on-premise, híbridos
+y cloud, y la seguridad, que cada vez pesa más. Mi objetivo es la seguridad
+operativa: detección, análisis de alertas y respuesta.</p></div>
+      </header>
+      <ul class="pf-areas__list">
+        <li class="pf-area" data-reveal style="--i: 0">
+          <span class="pf-area__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"/></svg></span>
+          <h3 class="pf-area__title">Seguridad y acceso</h3>
+          <p class="pf-area__text">Zscaler ZIA, ZPA, ZDX y Client Connector en varios tenants de cliente: segmentación Zero Trust, políticas de acceso e informes QBR. Sophos para endpoints y VPN.</p>
+        </li>
+        <li class="pf-area" data-reveal style="--i: 1">
+          <span class="pf-area__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 10v2H9v2H7v-2H5.8c-.4 1.2-1.5 2-2.8 2-1.7 0-3-1.3-3-3s1.3-3 3-3c1.3 0 2.4.8 2.8 2zm-8 0c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1m13 4c2.7 0 8 1.3 8 4v2H8v-2c0-2.7 5.3-4 8-4m0-2c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4"/></svg></span>
+          <h3 class="pf-area__title">Identidad</h3>
+          <p class="pf-area__text">Microsoft Entra ID e híbrido con Active Directory. Accesos condicionales, grupos de seguridad, sincronización e Intune.</p>
+        </li>
+        <li class="pf-area" data-reveal style="--i: 2">
+          <span class="pf-area__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 19h1a1 1 0 0 1 1 1h7v2h-7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1H2v-2h7a1 1 0 0 1 1-1h1v-2H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-7zM4 3h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1m5 4h1V5H9zm0 8h1v-2H9zM5 5v2h2V5zm0 8v2h2v-2z"/></svg></span>
+          <h3 class="pf-area__title">Infraestructura</h3>
+          <p class="pf-area__text">Windows Server, VMware vSphere, Hyper-V y Proxmox. Cloud en Azure y AWS. Automatización con PowerShell y despliegue por GPO.</p>
+        </li>
+        <li class="pf-area" data-reveal style="--i: 3">
+          <span class="pf-area__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19.07 4.93-1.41 1.41A8.01 8.01 0 0 1 20 12a8 8 0 0 1-8 8 8 8 0 0 1-8-8c0-4.08 3.05-7.44 7-7.93v2.02C8.16 6.57 6 9.03 6 12a6 6 0 0 0 6 6 6 6 0 0 0 6-6c0-1.66-.67-3.16-1.76-4.24l-1.41 1.41C15.55 9.9 16 10.9 16 12a4 4 0 0 1-4 4 4 4 0 0 1-4-4c0-1.86 1.28-3.41 3-3.86v2.14c-.6.35-1 .98-1 1.72a2 2 0 0 0 2 2 2 2 0 0 0 2-2c0-.74-.4-1.38-1-1.72V2h-1A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-2.76-1.12-5.26-2.93-7.07"/></svg></span>
+          <h3 class="pf-area__title">Detección</h3>
+          <p class="pf-area__text">Wazuh como SIEM/XDR en arquitectura distribuida de dos nodos. Auditoría de Active Directory con Purple Knight.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="pf-section pf-more" aria-labelledby="pf-more-title">
+    <div class="pf-wrap">
+      <h2 class="pf-section__title" id="pf-more-title" data-reveal>Sigue leyendo</h2>
+      <ul class="pf-more__list">
+        <li data-reveal style="--i: 6">
+          <a class="pf-more__link" href="trayectoria/">
+            <span class="pf-more__title">Trayectoria</span>
+            <span class="pf-more__text">Cinco entornos distintos, del rack al cloud. Un perfil comodín con rumbo a la ciberseguridad.</span>
+            <span class="pf-more__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span>
+          </a>
+        </li>
+        <li data-reveal style="--i: 7">
+          <a class="pf-more__link" href="formacion/">
+            <span class="pf-more__title">Formación</span>
+            <span class="pf-more__text">ASIR, el máster en curso, certificaciones y los labs que monto por mi cuenta.</span>
+            <span class="pf-more__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span>
+          </a>
+        </li>
+        <li data-reveal style="--i: 8">
+          <a class="pf-more__link" href="rumbo/">
+            <span class="pf-more__title">Rumbo</span>
+            <span class="pf-more__text">Hacia dónde voy, con fechas y lo que ya está tachado.</span>
+            <span class="pf-more__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+  <footer class="pf-footer">
+  <div class="pf-wrap pf-footer__inner">
+    <div class="pf-footer__id">
+      <p class="pf-footer__name">Enrique Montalvo Mejías</p>
+      <p class="pf-footer__role">Sistemas, infraestructura y ciberseguridad, desde Madrid.</p>
+    </div>
+    <nav class="pf-footer__nav" aria-label="Pie de página">
+      <ul>
+        <li><a href="./">Inicio</a></li>
+            <li><a href="./#proyectos">Proyectos</a></li>
+            <li><a href="trayectoria/">Trayectoria</a></li>
+            <li><a href="formacion/">Formación</a></li>
+            <li><a href="rumbo/">Rumbo</a></li>
+      </ul>
+      <ul>
+          <li><a href="https://www.linkedin.com/in/enrique-montalvo-mejias/" target="_blank" rel="me noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/enriquemontalvomejias" target="_blank" rel="me noopener">GitHub</a></li>
+      </ul>
+    </nav>
+    <p class="pf-footer__meta">
+      Hecho con <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">Material for MkDocs</a>
+      y publicado con GitHub Actions. Tipografía IBM Plex, servida desde esta misma web.
+    </p>
+  </div>
+</footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.code.copy"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="javascripts/portfolio.js"></script>
+      
+    
+  </body>
+</html>
