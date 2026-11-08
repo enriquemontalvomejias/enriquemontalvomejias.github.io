@@ -25,7 +25,7 @@ pasa.
 - [x] Curso Zscaler EDU-200 · sep 2026
 - [x] Portfolio técnico publicado · sep 2026
 - [x] Inicio del máster en Ciberseguridad e IA · oct 2026
-- [x] [Cloud privado IaaS con OpenStack](proyectos/openstack.md) · oct 2026
+- [x] [Lab de purple team](proyectos/wazuh.md): cadena de detección Wazuh + Suricata y fase de reconocimiento · nov 2026
 
 </div>
 
@@ -34,7 +34,8 @@ pasa.
 ### En marcha
 
 - [ ] Certificación ZDTA
-- [ ] Análisis de alertas en Wazuh: reglas, decoders y falsos positivos
+- [ ] [Lab de purple team](proyectos/wazuh.md): fases de ataque a Active Directory y la regla que caza cada una
+- [ ] [Cloud privado IaaS con OpenStack](proyectos/openstack.md): desplegado y con una instancia funcionando, pendiente de ampliar
 - [ ] Máster en Ciberseguridad e IA · hasta jun 2027
 
 </div>
