@@ -36,26 +36,61 @@ oficina. Todo sin coste, que resultó ser parte del reto.
 
 ## Arquitectura
 
-```mermaid
-flowchart LR
-    subgraph Host["Portátil · Proxmox VE"]
-        subgraph DC["VM · Windows Server 2025 (DC)"]
-            ADDS["AD DS + DNS"]
-            AADC["Entra Connect<br/>Password Hash Sync"]
-            TS1["Tailscale<br/>subnet router"]
-        end
-    end
-
-    ENTRA["Microsoft Entra ID<br/>tenant gratuito<br/>MFA por usuario"]
-
-    subgraph Remoto["Fuera de la red"]
-        PC["Cliente Windows<br/>+ Tailscale"]
-    end
-
-    AADC -->|"Sincronización cada 30 min"| ENTRA
-    PC -->|"Túnel WireGuard"| TS1
-    TS1 -->|"Kerberos · LDAP · SMB · RPC · DNS"| ADDS
-```
+<figure class="pf-diagram" markdown="0">
+<div class="pf-diagram__scroll">
+<svg viewBox="0 0 820 440" role="img" aria-labelledby="pf-ad-title pf-ad-desc">
+<title id="pf-ad-title">Arquitectura del lab de identidad híbrida</title>
+<desc id="pf-ad-desc">Un portátil con Proxmox VE aloja una VM con Windows Server 2025 como controlador de dominio, con AD DS y DNS, Entra Connect con Password Hash Sync y Tailscale como subnet router. Entra Connect sincroniza con Microsoft Entra ID cada 30 minutos. Un cliente Windows fuera de la red entra por un túnel WireGuard de Tailscale y llega al DC por Kerberos, LDAP, SMB, RPC y DNS.</desc>
+<defs>
+<marker id="pf-arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-red"/></marker>
+<marker id="pf-arr-cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-cyan"/></marker>
+<marker id="pf-arr-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-amber"/></marker>
+<marker id="pf-arr-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-muted"/></marker>
+</defs>
+<rect x="16" y="250" width="200" height="140" rx="8" class="pf-d-zone pf-d-zone--home"/>
+<text x="30" y="272" class="pf-d-zone-label">fuera de la red</text>
+<rect x="250" y="20" width="340" height="400" rx="10" class="pf-d-zone pf-d-zone--esxi"/>
+<text x="266" y="42" class="pf-d-zone-label">portátil · Proxmox VE</text>
+<text x="266" y="60" class="pf-d-zone-sub">i5 · 16 GB de RAM</text>
+<rect x="270" y="76" width="300" height="324" rx="8" class="pf-d-zone pf-d-zone--inner"/>
+<text x="284" y="98" class="pf-d-zone-label">VM · Windows Server 2025 · DC</text>
+<path d="M358,180 H470" class="pf-d-edge pf-d-edge--muted" marker-end="url(#pf-arr-muted)"/>
+<path d="M508,180 H706" class="pf-d-edge pf-d-edge--telemetry" marker-end="url(#pf-arr-cyan)"/>
+<text x="609" y="170" text-anchor="middle" class="pf-d-edge-label pf-d-cyan">sincroniza cada 30 min</text>
+<path d="M118,320 H320" class="pf-d-edge pf-d-edge--network" marker-end="url(#pf-arr-amber)"/>
+<text x="219" y="310" text-anchor="middle" class="pf-d-edge-label pf-d-amber">túnel WireGuard</text>
+<path d="M340,302 V202" class="pf-d-edge pf-d-edge--network" marker-end="url(#pf-arr-amber)"/>
+<text x="352" y="246" class="pf-d-edge-label">Kerberos · LDAP</text>
+<text x="352" y="262" class="pf-d-edge-label">SMB · RPC · DNS</text>
+<circle r="3.5" class="pf-d-packet pf-d-fill-amber"><animateMotion dur="3.4s" repeatCount="indefinite" path="M118,320 H340 V202" keyPoints="0;1;1" keyTimes="0;.6;1" calcMode="linear"/></circle>
+<circle r="3.5" class="pf-d-packet pf-d-fill-cyan"><animateMotion dur="3.4s" begin="1.4s" repeatCount="indefinite" path="M508,180 H706" keyPoints="0;1;1" keyTimes="0;.4;1" calcMode="linear"/></circle>
+<g class="pf-d-node"><circle cx="100" cy="320" r="16" class="pf-d-halo pf-d-fill-muted"/><circle cx="100" cy="320" r="6" class="pf-d-core pf-d-stroke-muted"/>
+<text x="100" y="355" text-anchor="middle" class="pf-d-name">cliente windows</text>
+<text x="100" y="372" text-anchor="middle" class="pf-d-role">+ tailscale</text></g>
+<g class="pf-d-node"><circle cx="340" cy="180" r="20" class="pf-d-halo pf-d-fill-cyan"/><circle cx="340" cy="180" r="11" class="pf-d-ring pf-d-stroke-cyan"/><circle cx="340" cy="180" r="5" class="pf-d-fill-cyan"/>
+<text x="340" y="134" text-anchor="middle" class="pf-d-name">ad ds + dns</text>
+<text x="340" y="150" text-anchor="middle" class="pf-d-role">fuente de verdad</text></g>
+<g class="pf-d-node"><circle cx="490" cy="180" r="18" class="pf-d-halo pf-d-fill-cyan"/><circle cx="490" cy="180" r="7" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="490" y="134" text-anchor="middle" class="pf-d-name">entra connect</text>
+<text x="490" y="150" text-anchor="middle" class="pf-d-role">password hash sync</text></g>
+<g class="pf-d-node"><circle cx="340" cy="320" r="18" class="pf-d-halo pf-d-fill-amber"/><rect x="332" y="312" width="16" height="16" transform="rotate(45 340 320)" class="pf-d-core pf-d-stroke-amber"/>
+<text x="340" y="355" text-anchor="middle" class="pf-d-name">tailscale</text>
+<text x="340" y="372" text-anchor="middle" class="pf-d-role">subnet router</text></g>
+<g class="pf-d-node"><circle cx="730" cy="180" r="20" class="pf-d-halo pf-d-fill-cyan"/><circle cx="730" cy="180" r="9" class="pf-d-core pf-d-cloud pf-d-stroke-cyan"/>
+<text x="730" y="134" text-anchor="middle" class="pf-d-name">entra id</text>
+<text x="730" y="216" text-anchor="middle" class="pf-d-role">tenant gratuito</text>
+<text x="730" y="232" text-anchor="middle" class="pf-d-role">MFA por usuario</text></g>
+<text x="384" y="300" class="pf-d-note">anunciar, aprobar</text>
+<text x="384" y="318" class="pf-d-note">y aceptar la ruta:</text>
+<text x="384" y="336" class="pf-d-note">si falta uno, no llega</text>
+<text x="640" y="290" class="pf-d-note">sin P1, nada de acceso</text>
+<text x="640" y="308" class="pf-d-note">condicional</text>
+<text x="30" y="414" class="pf-d-note">sin abrir un solo</text>
+<text x="30" y="432" class="pf-d-note">puerto en el router</text>
+</svg>
+</div>
+<figcaption>El AD manda y Entra copia. El cliente remoto entra por Tailscale y se une al dominio como si estuviera en la oficina. Todo a coste cero.</figcaption>
+</figure>
 
 | Capa | Tecnología |
 |---|---|

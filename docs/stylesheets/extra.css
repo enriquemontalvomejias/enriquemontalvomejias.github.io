@@ -1929,3 +1929,90 @@ body {
     transform: none;
   }
 }
+
+
+/* 12. Diagramas dibujados a mano (SVG en línea) ───────────────────────────
+   Mismo lenguaje que el mapa de red de la portada: nodos con halo, mono en
+   minúsculas, rojo para el ataque, azul para la telemetría y ámbar para la red.
+   Las notas en cursiva ámbar son apuntes míos sobre el esquema. */
+
+.md-typeset .pf-diagram { margin: 1.6rem 0 2rem; }
+
+.pf-diagram__scroll {
+  overflow-x: auto;
+  padding: 1rem .6rem .4rem;
+  border: 1px solid var(--pf-line);
+  border-radius: .35rem;
+  background-color: var(--pf-well);
+  background-image:
+    linear-gradient(rgba(36, 52, 77, .45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 52, 77, .45) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.pf-diagram svg {
+  display: block;
+  width: 100%;
+  min-width: 620px;
+  height: auto;
+  font-family: var(--pf-mono);
+}
+
+.pf-d-zone { fill: none; stroke-width: 1.2; }
+.pf-d-zone--esxi { stroke: var(--pf-line-strong); fill: rgba(56, 189, 248, .025); }
+.pf-d-zone--home { stroke: var(--pf-line-strong); stroke-dasharray: 5 5; }
+.pf-d-zone--inner { stroke: var(--pf-line-strong); fill: rgba(56, 189, 248, .03); }
+.pf-d-zone-label { fill: var(--pf-text-2); font-size: 14.5px; }
+.pf-d-zone-sub { fill: var(--pf-muted); font-size: 13.5px; }
+
+.pf-d-edge { fill: none; stroke-width: 1.6; }
+.pf-d-edge--attack { stroke: var(--pf-red); stroke-width: 2.2; }
+.pf-d-edge--dashed { stroke-dasharray: 6 5; stroke-width: 1.6; }
+.pf-d-edge--telemetry { stroke: var(--pf-cyan); }
+.pf-d-edge--network { stroke: var(--pf-amber); stroke-dasharray: 2 5; stroke-linecap: round; }
+.pf-d-edge--muted { stroke: var(--pf-muted); }
+.pf-d-edge-label { fill: var(--pf-muted); font-size: 14px; }
+
+.pf-d-name { fill: var(--pf-text); font-size: 16px; }
+.pf-d-role { fill: var(--pf-muted); font-size: 13.5px; }
+
+.pf-d-halo { opacity: .14; }
+.pf-d-core { fill: var(--pf-ink); stroke-width: 2.2; }
+.pf-d-ring { fill: none; stroke-width: 1.6; }
+.pf-d-cloud { stroke-dasharray: 3 3; }
+
+/* Los textos tapan las líneas que pasan por debajo, como en un esquema a mano */
+.pf-diagram svg text {
+  paint-order: stroke;
+  stroke: var(--pf-well);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+
+.pf-d-note {
+  fill: var(--pf-amber);
+  font-family: var(--md-text-font-family);
+  font-size: 15px;
+  font-style: italic;
+  opacity: .85;
+}
+
+.pf-d-red, .pf-d-fill-red { fill: var(--pf-red); }
+.pf-d-cyan, .pf-d-fill-cyan { fill: var(--pf-cyan); }
+.pf-d-amber, .pf-d-fill-amber { fill: var(--pf-amber); }
+.pf-d-fill-muted { fill: var(--pf-muted); }
+.pf-d-stroke-red { stroke: var(--pf-red); }
+.pf-d-stroke-cyan { stroke: var(--pf-cyan); }
+.pf-d-stroke-amber { stroke: var(--pf-amber); }
+.pf-d-stroke-muted { stroke: var(--pf-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-d-packet { display: none; }
+}
+
+/* Bloques de log de una sola línea: mejor partidos que con scroll lateral */
+
+.md-typeset .highlight.pf-logline code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

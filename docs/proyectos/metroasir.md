@@ -47,26 +47,66 @@ La versión inicial trabaja con los datos de la línea 4.
 
 ## Arquitectura
 
-```mermaid
-flowchart LR
-    U["Usuario"] -->|HTTPS| CF["Cloudflare<br/>DNS y túnel"]
-    CF -.->|"túnel saliente,<br/>sin puertos abiertos"| WEB
-
-    subgraph Host["Portátil · Proxmox VE"]
-        PX["Host Proxmox<br/>+ Tailscale"]
-        PF["pfSense<br/>router y firewall"]
-        subgraph DMZ["DMZ · 172.16.12.0/24"]
-            WEB["Servidor web<br/>Apache + PHP<br/>cloudflared"]
-        end
-        subgraph LAN["LAN · 10.20.30.0/24"]
-            DB[("MariaDB")]
-        end
-    end
-
-    WEB -->|"MySQL 3306"| PF
-    PF -->|"solo desde la IP<br/>del servidor web"| DB
-    ADM["Equipo de trabajo<br/>+ Tailscale"] -.->|VPN| PX
-```
+<figure class="pf-diagram" markdown="0">
+<div class="pf-diagram__scroll">
+<svg viewBox="0 0 820 470" role="img" aria-labelledby="pf-metro-title pf-metro-desc">
+<title id="pf-metro-title">Arquitectura de MetroASIR</title>
+<desc id="pf-metro-desc">El usuario entra por HTTPS a Cloudflare, que llega al servidor web de la DMZ (172.16.12.0/24) por un túnel saliente de cloudflared, sin puertos abiertos. Todo corre en Proxmox VE en un portátil. El servidor web consulta MariaDB en la LAN (10.20.30.0/24) por el puerto 3306 a través de pfSense, que solo lo permite desde la IP del servidor web. El equipo de trabajo administra el host por VPN con Tailscale.</desc>
+<defs>
+<marker id="pf-arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-red"/></marker>
+<marker id="pf-arr-cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-cyan"/></marker>
+<marker id="pf-arr-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-amber"/></marker>
+<marker id="pf-arr-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-muted"/></marker>
+</defs>
+<rect x="300" y="20" width="504" height="410" rx="10" class="pf-d-zone pf-d-zone--esxi"/>
+<text x="316" y="42" class="pf-d-zone-label">portátil · Proxmox VE</text>
+<rect x="320" y="60" width="220" height="190" rx="8" class="pf-d-zone pf-d-zone--inner"/>
+<text x="334" y="82" class="pf-d-zone-label">DMZ · 172.16.12.0/24</text>
+<rect x="570" y="270" width="214" height="140" rx="8" class="pf-d-zone pf-d-zone--inner"/>
+<text x="584" y="292" class="pf-d-zone-label">LAN · 10.20.30.0/24</text>
+<path d="M78,100 H200" class="pf-d-edge pf-d-edge--telemetry" marker-end="url(#pf-arr-cyan)"/>
+<text x="139" y="90" text-anchor="middle" class="pf-d-edge-label pf-d-cyan">HTTPS</text>
+<path d="M412,146 L242,105" class="pf-d-edge pf-d-edge--network" marker-end="url(#pf-arr-amber)"/>
+<text x="330" y="110" text-anchor="middle" class="pf-d-edge-label pf-d-amber">túnel saliente</text>
+<path d="M448,150 H660" class="pf-d-edge pf-d-edge--telemetry" marker-end="url(#pf-arr-cyan)"/>
+<text x="600" y="172" text-anchor="middle" class="pf-d-edge-label pf-d-cyan">MySQL 3306</text>
+<path d="M680,170 V316" class="pf-d-edge pf-d-edge--telemetry" marker-end="url(#pf-arr-cyan)"/>
+<text x="668" y="216" text-anchor="end" class="pf-d-edge-label">solo desde</text>
+<text x="668" y="232" text-anchor="end" class="pf-d-edge-label">la IP del web</text>
+<path d="M108,340 H410" class="pf-d-edge pf-d-edge--muted pf-d-edge--dashed" marker-end="url(#pf-arr-muted)"/>
+<text x="260" y="330" text-anchor="middle" class="pf-d-edge-label">VPN · Tailscale</text>
+<circle r="3.5" class="pf-d-packet pf-d-fill-cyan"><animateMotion dur="3.6s" repeatCount="indefinite" path="M78,100 H200" keyPoints="0;1;1" keyTimes="0;.25;1" calcMode="linear"/></circle>
+<circle r="3.5" class="pf-d-packet pf-d-fill-cyan"><animateMotion dur="3.6s" repeatCount="indefinite" path="M448,150 H680 V316" keyPoints="0;0;1;1" keyTimes="0;.35;.85;1" calcMode="linear"/></circle>
+<g class="pf-d-node"><circle cx="60" cy="100" r="16" class="pf-d-halo pf-d-fill-muted"/><circle cx="60" cy="100" r="6" class="pf-d-core pf-d-stroke-muted"/>
+<text x="60" y="135" text-anchor="middle" class="pf-d-name">usuario</text></g>
+<g class="pf-d-node"><circle cx="220" cy="100" r="20" class="pf-d-halo pf-d-fill-amber"/><circle cx="220" cy="100" r="9" class="pf-d-core pf-d-cloud pf-d-stroke-amber"/>
+<text x="220" y="135" text-anchor="middle" class="pf-d-name">cloudflare</text>
+<text x="220" y="151" text-anchor="middle" class="pf-d-role">DNS + túnel</text></g>
+<g class="pf-d-node"><circle cx="430" cy="150" r="18" class="pf-d-halo pf-d-fill-cyan"/><circle cx="430" cy="150" r="7" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="430" y="185" text-anchor="middle" class="pf-d-name">servidor web</text>
+<text x="430" y="203" text-anchor="middle" class="pf-d-role">apache + php</text>
+<text x="430" y="219" text-anchor="middle" class="pf-d-role">cloudflared</text></g>
+<g class="pf-d-node"><circle cx="680" cy="150" r="18" class="pf-d-halo pf-d-fill-amber"/><rect x="672" y="142" width="16" height="16" transform="rotate(45 680 150)" class="pf-d-core pf-d-stroke-amber"/>
+<text x="680" y="112" text-anchor="middle" class="pf-d-name">pfsense</text>
+<text x="680" y="128" text-anchor="middle" class="pf-d-role">router y firewall</text></g>
+<g class="pf-d-node"><circle cx="680" cy="340" r="18" class="pf-d-halo pf-d-fill-cyan"/><path d="M670,332 v16 a10,4 0 0 0 20,0 v-16" class="pf-d-core pf-d-stroke-cyan"/><ellipse cx="680" cy="332" rx="10" ry="4" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="680" y="375" text-anchor="middle" class="pf-d-name">mariadb</text>
+<text x="680" y="391" text-anchor="middle" class="pf-d-role">sin exposición</text></g>
+<g class="pf-d-node"><circle cx="430" cy="340" r="18" class="pf-d-halo pf-d-fill-muted"/><circle cx="430" cy="340" r="7" class="pf-d-core pf-d-stroke-muted"/>
+<text x="430" y="375" text-anchor="middle" class="pf-d-name">host proxmox</text>
+<text x="430" y="391" text-anchor="middle" class="pf-d-role">+ tailscale</text></g>
+<g class="pf-d-node"><circle cx="90" cy="340" r="16" class="pf-d-halo pf-d-fill-muted"/><circle cx="90" cy="340" r="6" class="pf-d-core pf-d-stroke-muted"/>
+<text x="90" y="375" text-anchor="middle" class="pf-d-name">equipo de trabajo</text>
+<text x="90" y="391" text-anchor="middle" class="pf-d-role">+ tailscale</text></g>
+<text x="130" y="200" class="pf-d-note">sin abrir puertos,</text>
+<text x="130" y="218" class="pf-d-note">y tras CG-NAT</text>
+<text x="20" y="424" class="pf-d-note">los dos, cada uno</text>
+<text x="20" y="442" class="pf-d-note">desde su casa</text>
+<text x="316" y="456" class="pf-d-note">arranque en orden: pfSense, base de datos y web</text>
+</svg>
+</div>
+<figcaption>Lo único que se publica es la web, y sale por un túnel, no por un puerto abierto. La base de datos solo contesta al servidor web.</figcaption>
+</figure>
 
 | Zona | Rango | Función |
 |---|---|---|

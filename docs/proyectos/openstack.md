@@ -37,27 +37,66 @@ El objetivo no era solo "instalarlo", sino **entender cada pieza**:
 
 Todo el OpenStack corre dentro de una única VM Debian 12, anidada en el ESXi del HP Z1. La virtualización anidada es lo que permite que las instancias de la nube usen KVM real en lugar de emulación.
 
-```mermaid
-flowchart TB
-    PC["Mi PC<br/>navegador + SSH"] -->|HTTPS / SSH| ESXi
-
-    subgraph ESXi["HP Z1 · VMware ESXi 9.1"]
-        subgraph VM["VM Debian 12 · OpenStack all-in-one"]
-            KA["Kolla-Ansible<br/>~30 contenedores Docker"]
-            subgraph SVC["Servicios OpenStack"]
-                KEY["Keystone<br/>identidad"]
-                NOVA["Nova<br/>cómputo (KVM)"]
-                NEU["Neutron<br/>red"]
-                GLA["Glance<br/>imágenes"]
-                HOR["Horizon<br/>panel web"]
-            end
-            INST["Instancia CirrOS<br/>IP priv + IP flotante"]
-        end
-    end
-
-    NOVA --> INST
-    NEU --> INST
-```
+<figure class="pf-diagram" markdown="0">
+<div class="pf-diagram__scroll">
+<svg viewBox="0 0 820 462" role="img" aria-labelledby="pf-os-title pf-os-desc">
+<title id="pf-os-title">Arquitectura del cloud privado con OpenStack</title>
+<desc id="pf-os-desc">En el HP Z1 con VMware ESXi 9.1 corre una única VM Debian 12 con OpenStack all-in-one desplegado por Kolla-Ansible en unos 30 contenedores Docker: Horizon, Keystone, Glance, Nova y Neutron. Nova y Neutron levantan una instancia CirrOS con IP privada 10.0.0.x e IP flotante 10.0.2.x. Accedo desde mi PC por HTTPS y SSH.</desc>
+<defs>
+<marker id="pf-arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-red"/></marker>
+<marker id="pf-arr-cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-cyan"/></marker>
+<marker id="pf-arr-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-amber"/></marker>
+<marker id="pf-arr-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-muted"/></marker>
+</defs>
+<rect x="190" y="20" width="614" height="410" rx="10" class="pf-d-zone pf-d-zone--esxi"/>
+<text x="206" y="42" class="pf-d-zone-label">HP Z1 · VMware ESXi 9.1</text>
+<rect x="210" y="62" width="574" height="348" rx="8" class="pf-d-zone pf-d-zone--inner"/>
+<text x="224" y="84" class="pf-d-zone-label">VM Debian 12 · OpenStack all-in-one</text>
+<text x="224" y="102" class="pf-d-zone-sub">6 vCPU · 24 GB de RAM</text>
+<rect x="240" y="150" width="520" height="130" rx="8" class="pf-d-zone pf-d-zone--home"/>
+<text x="254" y="170" class="pf-d-zone-sub">servicios</text>
+<path d="M108,225 H270" class="pf-d-edge pf-d-edge--muted" marker-end="url(#pf-arr-muted)"/>
+<text x="180" y="215" text-anchor="middle" class="pf-d-edge-label">HTTPS / SSH</text>
+<path d="M720,121 V148" class="pf-d-edge pf-d-edge--muted pf-d-edge--dashed" marker-end="url(#pf-arr-muted)"/>
+<path d="M607,244 L634,331" class="pf-d-edge pf-d-edge--telemetry" marker-end="url(#pf-arr-cyan)"/>
+<path d="M708,244 L652,332" class="pf-d-edge pf-d-edge--network" marker-end="url(#pf-arr-amber)"/>
+<text x="690" y="300" class="pf-d-edge-label pf-d-amber">IP flotante</text>
+<circle r="3.5" class="pf-d-packet pf-d-fill-cyan"><animateMotion dur="3.4s" repeatCount="indefinite" path="M108,225 H270" keyPoints="0;1;1" keyTimes="0;.35;1" calcMode="linear"/></circle>
+<circle r="3.5" class="pf-d-packet pf-d-fill-cyan"><animateMotion dur="3.4s" begin="1.2s" repeatCount="indefinite" path="M607,244 L634,331" keyPoints="0;1;1" keyTimes="0;.3;1" calcMode="linear"/></circle>
+<g class="pf-d-node"><circle cx="90" cy="225" r="16" class="pf-d-halo pf-d-fill-muted"/><circle cx="90" cy="225" r="6" class="pf-d-core pf-d-stroke-muted"/>
+<text x="90" y="260" text-anchor="middle" class="pf-d-name">mi PC</text>
+<text x="90" y="276" text-anchor="middle" class="pf-d-role">navegador + SSH</text></g>
+<g class="pf-d-node"><circle cx="720" cy="112" r="16" class="pf-d-halo pf-d-fill-muted"/><rect x="713" y="105" width="14" height="14" rx="2" class="pf-d-core pf-d-stroke-muted"/>
+<text x="698" y="108" text-anchor="end" class="pf-d-name">kolla-ansible</text>
+<text x="698" y="126" text-anchor="end" class="pf-d-role">~30 contenedores docker</text></g>
+<g class="pf-d-node"><circle cx="290" cy="225" r="18" class="pf-d-halo pf-d-fill-cyan"/><circle cx="290" cy="225" r="7" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="290" y="198" text-anchor="middle" class="pf-d-name">horizon</text>
+<text x="290" y="262" text-anchor="middle" class="pf-d-role">panel web</text></g>
+<g class="pf-d-node"><circle cx="395" cy="225" r="18" class="pf-d-halo pf-d-fill-cyan"/><circle cx="395" cy="225" r="7" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="395" y="198" text-anchor="middle" class="pf-d-name">keystone</text>
+<text x="395" y="262" text-anchor="middle" class="pf-d-role">identidad</text></g>
+<g class="pf-d-node"><circle cx="500" cy="225" r="18" class="pf-d-halo pf-d-fill-cyan"/><circle cx="500" cy="225" r="7" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="500" y="198" text-anchor="middle" class="pf-d-name">glance</text>
+<text x="500" y="262" text-anchor="middle" class="pf-d-role">imágenes</text></g>
+<g class="pf-d-node"><circle cx="605" cy="225" r="18" class="pf-d-halo pf-d-fill-cyan"/><circle cx="605" cy="225" r="7" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="605" y="198" text-anchor="middle" class="pf-d-name">nova</text>
+<text x="605" y="262" text-anchor="middle" class="pf-d-role">cómputo · KVM</text></g>
+<g class="pf-d-node"><circle cx="710" cy="225" r="18" class="pf-d-halo pf-d-fill-amber"/><circle cx="710" cy="225" r="7" class="pf-d-core pf-d-stroke-amber"/>
+<text x="710" y="198" text-anchor="middle" class="pf-d-name">neutron</text>
+<text x="710" y="262" text-anchor="middle" class="pf-d-role">red</text></g>
+<g class="pf-d-node"><circle cx="642" cy="350" r="20" class="pf-d-halo pf-d-fill-cyan"/><circle cx="642" cy="350" r="11" class="pf-d-ring pf-d-stroke-cyan"/><circle cx="642" cy="350" r="5" class="pf-d-fill-cyan"/>
+<text x="616" y="346" text-anchor="end" class="pf-d-name">instancia cirros</text>
+<text x="616" y="364" text-anchor="end" class="pf-d-role">privada 10.0.0.x</text>
+<text x="616" y="380" text-anchor="end" class="pf-d-role">flotante 10.0.2.x</text></g>
+<text x="232" y="310" class="pf-d-note">~13 GB de RAM solo</text>
+<text x="232" y="328" class="pf-d-note">para estar encendido</text>
+<text x="232" y="372" class="pf-d-note">la flotante parece pública,</text>
+<text x="232" y="390" class="pf-d-note">pero no lo es</text>
+<text x="206" y="448" class="pf-d-note">montado en una tarde, con la espina del ciclo clavada</text>
+</svg>
+</div>
+<figcaption>Todo OpenStack vive dentro de una sola VM. Las instancias corren con KVM de verdad gracias a la virtualización anidada.</figcaption>
+</figure>
 
 | Interfaz / red        | Valor              | Función                                                      |
 |-----------------------|--------------------|--------------------------------------------------------------|

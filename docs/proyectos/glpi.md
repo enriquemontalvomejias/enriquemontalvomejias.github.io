@@ -49,28 +49,64 @@ de tres meses en uno de un año.
 
 ## Arquitectura
 
-```mermaid
-flowchart LR
-    subgraph Clientes["Parque de clientes (~600 endpoints)"]
-        A1["Equipos en dominio<br/>Cliente A"]
-        A2["Equipos en dominio<br/>Cliente B"]
-        A3["Equipos fuera de dominio<br/>(reserva / móviles)"]
-    end
-
-    subgraph Infra["Infraestructura del servicio"]
-        LB["Apache + TLS<br/>(Let's Encrypt)"]
-        GLPI["GLPI 11"]
-        DB[("MariaDB")]
-    end
-
-    A1 -->|Inventario XML| LB
-    A2 -->|Inventario XML| LB
-    A3 -->|Inventario XML| LB
-    LB --> GLPI
-    GLPI --> DB
-
-    GLPI -.->|Reglas de asignación| ENT["Entidades por cliente"]
-```
+<figure class="pf-diagram" markdown="0">
+<div class="pf-diagram__scroll">
+<svg viewBox="0 0 820 430" role="img" aria-labelledby="pf-glpi-title pf-glpi-desc">
+<title id="pf-glpi-title">Arquitectura del inventario con GLPI</title>
+<desc id="pf-glpi-desc">Los equipos de unos veinte clientes, en dominio y fuera de dominio, mandan su inventario XML a un Apache con TLS de Let's Encrypt delante de GLPI 11 y MariaDB, en una VM Debian 12 en cloud. GLPI coloca cada equipo en la entidad de su cliente mediante reglas de asignación.</desc>
+<defs>
+<marker id="pf-arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-red"/></marker>
+<marker id="pf-arr-cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-cyan"/></marker>
+<marker id="pf-arr-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-amber"/></marker>
+<marker id="pf-arr-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-muted"/></marker>
+</defs>
+<rect x="16" y="20" width="250" height="390" rx="8" class="pf-d-zone pf-d-zone--home"/>
+<text x="30" y="42" class="pf-d-zone-label">parque de clientes</text>
+<text x="30" y="60" class="pf-d-zone-sub">~20 orgs · ~600 endpoints</text>
+<rect x="370" y="20" width="434" height="330" rx="10" class="pf-d-zone pf-d-zone--esxi"/>
+<text x="384" y="42" class="pf-d-zone-label">VM Debian 12 · cloud</text>
+<text x="384" y="60" class="pf-d-zone-sub">solo el equipo técnico</text>
+<path d="M250,124 L420,164" class="pf-d-edge pf-d-edge--telemetry" marker-end="url(#pf-arr-cyan)"/>
+<path d="M250,210 L419,172" class="pf-d-edge pf-d-edge--telemetry" marker-end="url(#pf-arr-cyan)"/>
+<path d="M250,296 L421,182" class="pf-d-edge pf-d-edge--telemetry" marker-end="url(#pf-arr-cyan)"/>
+<text x="306" y="104" text-anchor="middle" class="pf-d-edge-label pf-d-cyan">inventario XML</text>
+<path d="M458,170 H570" class="pf-d-edge pf-d-edge--muted" marker-end="url(#pf-arr-muted)"/>
+<path d="M608,170 H718" class="pf-d-edge pf-d-edge--muted" marker-end="url(#pf-arr-muted)"/>
+<path d="M590,188 V260" class="pf-d-edge pf-d-edge--network" marker-end="url(#pf-arr-amber)"/>
+<text x="602" y="230" class="pf-d-edge-label pf-d-amber">reglas de asignación</text>
+<circle r="3.5" class="pf-d-packet pf-d-fill-cyan"><animateMotion dur="3.4s" repeatCount="indefinite" path="M250,124 L420,164" keyPoints="0;1;1" keyTimes="0;.35;1" calcMode="linear"/></circle>
+<circle r="3.5" class="pf-d-packet pf-d-fill-cyan"><animateMotion dur="3.4s" begin="1.2s" repeatCount="indefinite" path="M250,296 L421,182" keyPoints="0;1;1" keyTimes="0;.35;1" calcMode="linear"/></circle>
+<circle r="3.5" class="pf-d-packet pf-d-fill-amber"><animateMotion dur="3.4s" repeatCount="indefinite" path="M590,188 V260" keyPoints="0;0;1;1" keyTimes="0;.45;.75;1" calcMode="linear"/></circle>
+<g class="pf-d-node"><circle cx="232" cy="120" r="16" class="pf-d-halo pf-d-fill-cyan"/><circle cx="232" cy="120" r="6" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="208" y="116" text-anchor="end" class="pf-d-name">cliente A</text>
+<text x="208" y="134" text-anchor="end" class="pf-d-role">dominio · GPO</text></g>
+<g class="pf-d-node"><circle cx="232" cy="210" r="16" class="pf-d-halo pf-d-fill-cyan"/><circle cx="232" cy="210" r="6" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="208" y="206" text-anchor="end" class="pf-d-name">cliente B</text>
+<text x="208" y="224" text-anchor="end" class="pf-d-role">Intune</text></g>
+<g class="pf-d-node"><circle cx="232" cy="300" r="16" class="pf-d-halo pf-d-fill-muted"/><circle cx="232" cy="300" r="6" class="pf-d-core pf-d-stroke-muted"/>
+<text x="208" y="296" text-anchor="end" class="pf-d-name">fuera de dominio</text>
+<text x="208" y="314" text-anchor="end" class="pf-d-role">TAG en el registro</text></g>
+<g class="pf-d-node"><circle cx="440" cy="170" r="18" class="pf-d-halo pf-d-fill-cyan"/><circle cx="440" cy="170" r="7" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="440" y="120" text-anchor="middle" class="pf-d-name">apache + tls</text>
+<text x="440" y="138" text-anchor="middle" class="pf-d-role">Let's Encrypt</text></g>
+<g class="pf-d-node"><circle cx="590" cy="170" r="20" class="pf-d-halo pf-d-fill-cyan"/><circle cx="590" cy="170" r="11" class="pf-d-ring pf-d-stroke-cyan"/><circle cx="590" cy="170" r="5" class="pf-d-fill-cyan"/>
+<text x="590" y="120" text-anchor="middle" class="pf-d-name">glpi 11</text>
+<text x="590" y="138" text-anchor="middle" class="pf-d-role">inventario</text></g>
+<g class="pf-d-node"><circle cx="740" cy="170" r="18" class="pf-d-halo pf-d-fill-cyan"/><path d="M730,162 v16 a10,4 0 0 0 20,0 v-16" class="pf-d-core pf-d-stroke-cyan"/><ellipse cx="740" cy="162" rx="10" ry="4" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="740" y="120" text-anchor="middle" class="pf-d-name">mariadb</text>
+<text x="740" y="138" text-anchor="middle" class="pf-d-role">backend</text></g>
+<g class="pf-d-node"><circle cx="590" cy="280" r="16" class="pf-d-halo pf-d-fill-amber"/><rect x="583" y="273" width="14" height="14" rx="2" class="pf-d-core pf-d-stroke-amber"/>
+<text x="612" y="276" class="pf-d-name">entidades</text>
+<text x="612" y="294" class="pf-d-role">una por cliente</text></g>
+<text x="612" y="330" class="pf-d-note">cada uno ve lo suyo</text>
+<text x="30" y="360" class="pf-d-note">el TAG solo no asigna:</text>
+<text x="30" y="378" class="pf-d-note">hacen falta reglas</text>
+<text x="384" y="390" class="pf-d-note">puerto no estándar: lo que</text>
+<text x="384" y="408" class="pf-d-note">más guerra dio con los proxies</text>
+</svg>
+</div>
+<figcaption>Cada equipo manda su inventario solo y GLPI lo coloca en su cliente sin que nadie lo mueva a mano.</figcaption>
+</figure>
 
 **Servidor.** GLPI 11 sobre una máquina virtual Debian 12 en un proveedor
 cloud (Plenit, antes Jotelulu), con Apache como frontal y MariaDB como backend.
