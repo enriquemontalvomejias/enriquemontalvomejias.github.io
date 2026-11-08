@@ -55,7 +55,7 @@ nav:
   - Proyectos:
       - Inventario de activos con GLPI: proyectos/glpi.md
       - Lab de identidad híbrida: proyectos/lab-ad.md
-      - SIEM distribuido con Wazuh: proyectos/wazuh.md
+      - Lab de purple team con Wazuh: proyectos/wazuh.md
       - Cloud privado con OpenStack: proyectos/openstack.md
       - MetroASIR (TFG): proyectos/metroasir.md
   - Trayectoria: trayectoria.md
