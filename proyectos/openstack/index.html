@@ -1,0 +1,477 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cloud privado IaaS con OpenStack en un solo nodo, desplegado con Kolla-Ansible sobre una VM anidada en ESXi.">
+      
+      
+      
+        <link rel="canonical" href="https://enriquemontalvomejias.github.io/proyectos/openstack/">
+      
+      
+        <link rel="prev" href="../wazuh/">
+      
+      
+        <link rel="next" href="../metroasir/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Cloud privado con OpenStack - Enrique Montalvo</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Enrique Montalvo">
+  <meta property="og:title" content="Cloud privado con OpenStack · Enrique Montalvo">
+  <meta property="og:description" content="Nube privada IaaS en un solo nodo: ~30 servicios en contenedores con Kolla-Ansible sobre una VM anidada en ESXi, y una instancia con su IP privada y su IP flotante.">
+  <meta property="og:url" content="https://enriquemontalvomejias.github.io/proyectos/openstack/">
+  <meta property="og:image" content="https://enriquemontalvomejias.github.io/og/openstack.png">
+  <meta property="og:image:alt" content="Cloud privado con OpenStack: Nube privada IaaS en un solo nodo: ~30 servicios en contenedores con Kolla-Ansible sobre una VM anidada en ESXi, y una instancia con su IP privada y su IP flotante.">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://enriquemontalvomejias.github.io/og/openstack.png">
+  <meta name="theme-color" content="#0e1726">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <link rel="preload" href="../../assets/fonts/IBMPlexSans-Regular-Latin1.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/IBMPlexSansCondensed-SemiBold-Latin1.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("pf-js")</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cloud-privado-iaas-con-openstack" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+  <header class="pf-header" data-md-component="header">
+  <nav class="pf-nav pf-wrap" aria-label="Principal">
+    <a class="pf-brand" href="../../">
+      <span class="pf-brand__mark" aria-hidden="true">EM</span>
+      <span class="pf-brand__name">Enrique Montalvo</span>
+    </a>
+    <button class="pf-nav__toggle" type="button" aria-expanded="false" aria-controls="pf-menu">
+      <span class="pf-nav__bars" aria-hidden="true"><i></i><i></i></span>
+      <span class="pf-nav__toggle-label">Menú</span>
+    </button>
+    <div class="pf-nav__menu" id="pf-menu">
+      <ul class="pf-nav__links">
+            <li><a href="../../#proyectos" aria-current="true">Proyectos</a></li>
+            <li><a href="../../trayectoria/">Trayectoria</a></li>
+            <li><a href="../../formacion/">Formación</a></li>
+            <li><a href="../../rumbo/">Rumbo</a></li>
+      </ul>
+      <ul class="pf-nav__social">
+          <li>
+            <a href="https://www.linkedin.com/in/enrique-montalvo-mejias/" target="_blank" rel="me noopener" title="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+              <span class="pf-sr">LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/enriquemontalvomejias" target="_blank" rel="me noopener" title="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+              <span class="pf-sr">GitHub</span>
+            </a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+    <div class="md-container" data-md-component="container">
+      
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+  
+    <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+          
+            
+<div class="pf-sidestack">
+  <p class="pf-sidestack__title">Stack</p>
+  <ul class="pf-chips"><li>OpenStack</li><li>Kolla-Ansible</li><li>Ansible</li><li>Docker</li><li>Debian 12</li><li>VMware ESXi</li><li>KVM</li><li>Neutron</li><li>Keystone</li><li>Nova</li><li>Glance</li><li>Horizon</li>
+  </ul>
+</div>
+          
+          
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-resuelve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué resuelve
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decisiones-de-diseno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisiones de diseño
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#con-que-me-pelee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Con qué me peleé
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-cambiaria-hoy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué cambiaría hoy
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+        </div>
+      </div>
+    </div>
+  
+
+          
+  
+    <div class="md-content pf-writeup" data-md-component="content">
+      <article class="md-content__inner md-typeset">
+        <div class="pf-progress" aria-hidden="true"><span></span></div>
+<div class="pf-whead">
+  <a class="pf-back" href="../../#proyectos">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+    <span>Todos los proyectos</span>
+  </a>
+  <p class="pf-wmeta">
+    <span class="pf-status pf-status--en-curso">En curso</span>
+    <span>Lab personal</span><span>oct 2026</span>
+  </p>
+</div>
+        
+
+
+
+<h1 id="cloud-privado-iaas-con-openstack">Cloud privado IaaS con OpenStack</h1>
+<p>Despliegue de un IaaS privado completo con OpenStack sobre una máquina virtual anidada, usando Kolla-Ansible: identidad, cómputo, red, imágenes y panel web, con una instancia corriendo y el modelo de IP flotante reproducido de principio a fin.</p>
+<div class="admonition note">
+<p class="admonition-title">Contexto</p>
+<p>Laboratorio propio, montado en una tarde. La idea venía de lejos: en el CFGS de ASIR, un profesor desplegó un OpenStack que usábamos como cloud privado, y se me quedó la espina de montarlo yo. Corre sobre el mismo HP Z1 (i7-9700, 32 GB) que uso para el resto de labs, con ESXi por debajo. Es un entorno de aprendizaje, no un servicio en producción.</p>
+</div>
+<hr />
+<h2 id="que-resuelve">Qué resuelve</h2>
+<p>OpenStack es el software con el que se montan nubes privadas tipo IaaS: pides una VM, una red o un disco por autoservicio y la plataforma los crea sola, con proyectos, usuarios y cuotas separados. Es, a grandes rasgos, lo que hay por debajo de un proveedor como Jotelulu o AWS.</p>
+<p>El objetivo no era solo "instalarlo", sino <strong>entender cada pieza</strong>:</p>
+<ul>
+<li><strong>Desplegar el stack completo</strong> (identidad, cómputo, red, imágenes, orquestación y panel) en un solo nodo.</li>
+<li><strong>Reproducir el modelo de un proveedor cloud</strong>: lanzar una instancia, darle una IP privada y una IP flotante, y entender el NAT entre ambas.</li>
+<li><strong>Ver dónde está el límite del lab</strong> frente a un proveedor real (IPs públicas, HA, seguridad), que es tan importante como hacerlo funcionar.</li>
+</ul>
+<hr />
+<h2 id="arquitectura">Arquitectura</h2>
+<p>Todo el OpenStack corre dentro de una única VM Debian 12, anidada en el ESXi del HP Z1. La virtualización anidada es lo que permite que las instancias de la nube usen KVM real en lugar de emulación.</p>
+<figure class="pf-diagram" markdown="0">
+<div class="pf-diagram__scroll">
+<svg viewBox="0 0 820 462" role="img" aria-labelledby="pf-os-title pf-os-desc">
+<title id="pf-os-title">Arquitectura del cloud privado con OpenStack</title>
+<desc id="pf-os-desc">En el HP Z1 con VMware ESXi 9.1 corre una única VM Debian 12 con OpenStack all-in-one desplegado por Kolla-Ansible en unos 30 contenedores Docker: Horizon, Keystone, Glance, Nova y Neutron. Nova y Neutron levantan una instancia CirrOS con IP privada 10.0.0.x e IP flotante 10.0.2.x. Accedo desde mi PC por HTTPS y SSH.</desc>
+<defs>
+<marker id="pf-arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-red"/></marker>
+<marker id="pf-arr-cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-cyan"/></marker>
+<marker id="pf-arr-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-amber"/></marker>
+<marker id="pf-arr-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="pf-d-fill-muted"/></marker>
+</defs>
+<rect x="190" y="20" width="614" height="410" rx="10" class="pf-d-zone pf-d-zone--esxi"/>
+<text x="206" y="42" class="pf-d-zone-label">HP Z1 · VMware ESXi 9.1</text>
+<rect x="210" y="62" width="574" height="348" rx="8" class="pf-d-zone pf-d-zone--inner"/>
+<text x="224" y="84" class="pf-d-zone-label">VM Debian 12 · OpenStack all-in-one</text>
+<text x="224" y="102" class="pf-d-zone-sub">6 vCPU · 24 GB de RAM</text>
+<rect x="240" y="150" width="520" height="130" rx="8" class="pf-d-zone pf-d-zone--home"/>
+<text x="254" y="170" class="pf-d-zone-sub">servicios</text>
+<path d="M108,225 H270" class="pf-d-edge pf-d-edge--muted" marker-end="url(#pf-arr-muted)"/>
+<text x="180" y="215" text-anchor="middle" class="pf-d-edge-label">HTTPS / SSH</text>
+<path d="M720,121 V148" class="pf-d-edge pf-d-edge--muted pf-d-edge--dashed" marker-end="url(#pf-arr-muted)"/>
+<path d="M607,244 L634,331" class="pf-d-edge pf-d-edge--telemetry" marker-end="url(#pf-arr-cyan)"/>
+<path d="M708,244 L652,332" class="pf-d-edge pf-d-edge--network" marker-end="url(#pf-arr-amber)"/>
+<text x="690" y="300" class="pf-d-edge-label pf-d-amber">IP flotante</text>
+<circle r="3.5" class="pf-d-packet pf-d-fill-cyan"><animateMotion dur="3.4s" repeatCount="indefinite" path="M108,225 H270" keyPoints="0;1;1" keyTimes="0;.35;1" calcMode="linear"/></circle>
+<circle r="3.5" class="pf-d-packet pf-d-fill-cyan"><animateMotion dur="3.4s" begin="1.2s" repeatCount="indefinite" path="M607,244 L634,331" keyPoints="0;1;1" keyTimes="0;.3;1" calcMode="linear"/></circle>
+<g class="pf-d-node"><circle cx="90" cy="225" r="16" class="pf-d-halo pf-d-fill-muted"/><circle cx="90" cy="225" r="6" class="pf-d-core pf-d-stroke-muted"/>
+<text x="90" y="260" text-anchor="middle" class="pf-d-name">mi PC</text>
+<text x="90" y="276" text-anchor="middle" class="pf-d-role">navegador + SSH</text></g>
+<g class="pf-d-node"><circle cx="720" cy="112" r="16" class="pf-d-halo pf-d-fill-muted"/><rect x="713" y="105" width="14" height="14" rx="2" class="pf-d-core pf-d-stroke-muted"/>
+<text x="698" y="108" text-anchor="end" class="pf-d-name">kolla-ansible</text>
+<text x="698" y="126" text-anchor="end" class="pf-d-role">~30 contenedores docker</text></g>
+<g class="pf-d-node"><circle cx="290" cy="225" r="18" class="pf-d-halo pf-d-fill-cyan"/><circle cx="290" cy="225" r="7" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="290" y="198" text-anchor="middle" class="pf-d-name">horizon</text>
+<text x="290" y="262" text-anchor="middle" class="pf-d-role">panel web</text></g>
+<g class="pf-d-node"><circle cx="395" cy="225" r="18" class="pf-d-halo pf-d-fill-cyan"/><circle cx="395" cy="225" r="7" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="395" y="198" text-anchor="middle" class="pf-d-name">keystone</text>
+<text x="395" y="262" text-anchor="middle" class="pf-d-role">identidad</text></g>
+<g class="pf-d-node"><circle cx="500" cy="225" r="18" class="pf-d-halo pf-d-fill-cyan"/><circle cx="500" cy="225" r="7" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="500" y="198" text-anchor="middle" class="pf-d-name">glance</text>
+<text x="500" y="262" text-anchor="middle" class="pf-d-role">imágenes</text></g>
+<g class="pf-d-node"><circle cx="605" cy="225" r="18" class="pf-d-halo pf-d-fill-cyan"/><circle cx="605" cy="225" r="7" class="pf-d-core pf-d-stroke-cyan"/>
+<text x="605" y="198" text-anchor="middle" class="pf-d-name">nova</text>
+<text x="605" y="262" text-anchor="middle" class="pf-d-role">cómputo · KVM</text></g>
+<g class="pf-d-node"><circle cx="710" cy="225" r="18" class="pf-d-halo pf-d-fill-amber"/><circle cx="710" cy="225" r="7" class="pf-d-core pf-d-stroke-amber"/>
+<text x="710" y="198" text-anchor="middle" class="pf-d-name">neutron</text>
+<text x="710" y="262" text-anchor="middle" class="pf-d-role">red</text></g>
+<g class="pf-d-node"><circle cx="642" cy="350" r="20" class="pf-d-halo pf-d-fill-cyan"/><circle cx="642" cy="350" r="11" class="pf-d-ring pf-d-stroke-cyan"/><circle cx="642" cy="350" r="5" class="pf-d-fill-cyan"/>
+<text x="616" y="346" text-anchor="end" class="pf-d-name">instancia cirros</text>
+<text x="616" y="364" text-anchor="end" class="pf-d-role">privada 10.0.0.x</text>
+<text x="616" y="380" text-anchor="end" class="pf-d-role">flotante 10.0.2.x</text></g>
+<text x="232" y="310" class="pf-d-note">~13 GB de RAM solo</text>
+<text x="232" y="328" class="pf-d-note">para estar encendido</text>
+<text x="232" y="372" class="pf-d-note">la flotante parece pública,</text>
+<text x="232" y="390" class="pf-d-note">pero no lo es</text>
+<text x="206" y="448" class="pf-d-note">montado en una tarde, con la espina del ciclo clavada</text>
+</svg>
+</div>
+<figcaption>Todo OpenStack vive dentro de una sola VM. Las instancias corren con KVM de verdad gracias a la virtualización anidada.</figcaption>
+</figure>
+
+<table>
+<thead>
+<tr>
+<th>Interfaz / red</th>
+<th>Valor</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gestión (<code>ens192</code>)</td>
+<td>192.168.1.190</td>
+<td>APIs, acceso a Horizon y salida a internet de la VM</td>
+</tr>
+<tr>
+<td>Externa (<code>ens224</code>)</td>
+<td>sin IP</td>
+<td>Red externa de Neutron: aquí viven las IPs flotantes</td>
+</tr>
+<tr>
+<td>VIP interna</td>
+<td>192.168.1.250</td>
+<td>IP virtual del balanceador (HAProxy + keepalived), = Horizon</td>
+</tr>
+<tr>
+<td>Red interna de la VM</td>
+<td>10.0.0.0/24</td>
+<td><code>demo-net</code>: IP privada de las instancias</td>
+</tr>
+<tr>
+<td>Red flotante</td>
+<td>10.0.2.0/24</td>
+<td><code>public1</code>: IP flotante (la "pública" dentro del lab)</td>
+</tr>
+</tbody>
+</table>
+<p>La VM se dimensionó con 6 vCPU, 24 GB de RAM y 120 GB de disco. En reposo, OpenStack consume unos 13 GB de RAM solo en mantener sus contenedores vivos.</p>
+<hr />
+<h2 id="decisiones-de-diseno">Decisiones de diseño</h2>
+<p><strong>Kolla-Ansible, no Sunbeam ni DevStack.</strong> De las tres vías para montar OpenStack, elegí Kolla-Ansible: despliega cada servicio en un contenedor Docker usando Ansible, soporta Debian 12 de forma oficial y, al configurar la red y los servicios a mano, se entiende mucho mejor qué hace cada pieza. Sunbeam (de Canonical) era la vía rápida pero es un snap atado a Ubuntu; DevStack está pensado para desarrollar OpenStack, no para tener un entorno estable.</p>
+<p><strong>Anidado sobre ESXi, no sobre el metal.</strong> Como ya administro VMware en el trabajo y el HP Z1 tenía ESXi, monté OpenStack en una VM anidada en lugar de dedicar la máquina. Reproduce un escenario realista (empresas migrando desde VMware) y me deja el host para otros labs. El coste es activar la virtualización anidada y tener cuidado con la red.</p>
+<p><strong>Las dos interfaces de red.</strong> OpenStack necesita dos: una de gestión con IP, y una "externa" <strong>sin IP</strong>, que es la que Neutron usa para las IPs flotantes. Olvidar que la segunda va sin dirección es el error clásico.</p>
+<p><strong>El port group de la red externa, en modo promiscuo.</strong> En el vSwitch de ESXi, la red externa necesita modo promiscuo, cambios de MAC y transmisiones falsificadas en "Aceptar". Es justo lo contrario de lo seguro en producción, pero obligatorio en el lab: las instancias usan MACs que el vSwitch no conoce, y sin esto descarta su tráfico y las IPs flotantes no funcionan aunque todo parezca bien.</p>
+<p><strong>Entorno virtual de Python para Kolla.</strong> Instalé Ansible y Kolla-Ansible en un <code>venv</code>, no en el Python del sistema, para no pisar los paquetes de Debian. A cambio, algunas dependencias que el bootstrap instala a nivel de sistema hubo que añadirlas al venv a mano.</p>
+<hr />
+<h2 id="con-que-me-pelee">Con qué me peleé</h2>
+<p><strong>Dependencias que faltaban en el venv.</strong> Los <code>prechecks</code> fueron destapando una a una librerías que no estaban en el entorno virtual: primero el SDK de Docker para Python (<code>pip install docker</code>), después <code>dbus-python</code>, que no instala solo con pip porque necesita librerías de compilación del sistema (<code>libdbus-1-dev</code>, <code>libglib2.0-dev</code>, <code>pkg-config</code>). Relanzar los prechecks tras cada arreglo es el flujo correcto: no pasar al deploy hasta tener <code>failed=0</code>.</p>
+<p><strong>sudo no estaba instalado.</strong> Al poner contraseña de root durante la instalación de Debian, sudo no se instala y el usuario no queda en el grupo. Hubo que instalarlo y añadir el usuario (<code>usermod -aG sudo</code>) antes de que Kolla pudiera trabajar.</p>
+<p><strong>El <code>-i ./all-in-one</code> en todos los comandos.</strong> El <code>post-deploy</code> falló por buscar el inventario en una ruta por defecto que no existe. Kolla necesita que le pases el inventario con <code>-i</code> en cada comando, no solo en el deploy.</p>
+<p><strong>La VM no sale a internet, y es correcto.</strong> La instancia arranca y tiene su IP interna, pero no tiene salida a internet. No es un fallo: la red externa (<code>public1</code>) vive en un port group aislado del ESXi, sin un router real hacia mi LAN. Para que saliera habría que enrutar esa red hacia casa, que para el lab ni hace falta ni conviene.</p>
+<hr />
+<h2 id="que-cambiaria-hoy">Qué cambiaría hoy</h2>
+<ul>
+<li><strong>La IP de gestión, fija.</strong> <code>ens192</code> coge IP por DHCP (acabó en .190). Si el router se la cambia, rompe el despliegue, porque la VIP y las APIs dependen de ella. En un montaje serio iría con IP estática desde el principio.</li>
+<li><strong>Trabajar con usuario, no como root.</strong> Monté buena parte como root por rapidez. Lo correcto es el usuario normal con sudo; el <code>venv</code> quedó en <code>/opt</code> para que cualquier usuario lo active.</li>
+<li><strong>Salida a internet de las instancias.</strong> El siguiente paso natural es enrutar la red externa para que las VMs salgan de verdad, que es donde se aprende el networking de Neutron en serio.</li>
+<li><strong>Multi-tenant.</strong> Separar dos proyectos como si fueran dos clientes (usuario, cuota, red y router propios) y demostrar el aislamiento entre ellos. Es lo que convierte "monté OpenStack" en "monté un proveedor cloud en pequeño".</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Dónde está el límite</p>
+<p>La IP flotante del lab (10.0.2.x) se comporta como una pública, pero no lo es: es una dirección privada y aislada. En un proveedor real, esa flotante saldría de un bloque de IPs públicas enrutables, con el mismo mecanismo de NAT que aquí. La diferencia con un Jotelulu no es el software, es el bloque de IPs públicas, la alta disponibilidad, la seguridad endurecida y la operación 24/7. El lab reproduce el <strong>mecanismo</strong>, no el servicio.</p>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+        <aside class="pf-wfoot" aria-label="Más sobre este proyecto">
+  <div class="pf-wfoot__stack">
+    <p class="pf-wfoot__title">Stack</p>
+    <ul class="pf-chips"><li>OpenStack</li><li>Kolla-Ansible</li><li>Ansible</li><li>Docker</li><li>Debian 12</li><li>VMware ESXi</li><li>KVM</li><li>Neutron</li><li>Keystone</li><li>Nova</li><li>Glance</li><li>Horizon</li>
+    </ul>
+  </div>
+    <a class="pf-next" href="../metroasir/">
+      <span class="pf-next__label">Siguiente proyecto</span>
+      <span class="pf-next__title">MetroASIR (TFG)</span>
+      <span class="pf-next__summary">Infraestructura en Proxmox segmentada en WAN, LAN y DMZ con pfSense y publicada con Cloudflare Tunnel. TFG junto a Álvaro García, calificado con un 9,15.</span>
+      <span class="pf-next__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span>
+    </a>
+</aside>
+      </article>
+    </div>
+  
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+  <footer class="pf-footer">
+  <div class="pf-wrap pf-footer__inner">
+    <div class="pf-footer__id">
+      <p class="pf-footer__name">Enrique Montalvo Mejías</p>
+      <p class="pf-footer__role">Sistemas, infraestructura y ciberseguridad, desde Madrid.</p>
+    </div>
+    <nav class="pf-footer__nav" aria-label="Pie de página">
+      <ul>
+        <li><a href="../../">Inicio</a></li>
+            <li><a href="../../#proyectos">Proyectos</a></li>
+            <li><a href="../../trayectoria/">Trayectoria</a></li>
+            <li><a href="../../formacion/">Formación</a></li>
+            <li><a href="../../rumbo/">Rumbo</a></li>
+      </ul>
+      <ul>
+          <li><a href="https://www.linkedin.com/in/enrique-montalvo-mejias/" target="_blank" rel="me noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/enriquemontalvomejias" target="_blank" rel="me noopener">GitHub</a></li>
+      </ul>
+    </nav>
+    <p class="pf-footer__meta">
+      Hecho con <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">Material for MkDocs</a>
+      y publicado con GitHub Actions. Tipografía IBM Plex, servida desde esta misma web.
+    </p>
+  </div>
+</footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../javascripts/portfolio.js"></script>
+      
+    
+  </body>
+</html>

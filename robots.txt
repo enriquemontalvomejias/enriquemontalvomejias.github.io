@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://enriquemontalvomejias.github.io/sitemap.xml
