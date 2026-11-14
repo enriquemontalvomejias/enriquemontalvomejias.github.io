@@ -1,4 +1,7 @@
 ---
+description: >-
+  Cloud privado IaaS con OpenStack en un solo nodo, desplegado con
+  Kolla-Ansible sobre una VM anidada en ESXi.
 proyecto:
   resumen: >-
     Nube privada IaaS en un solo nodo: ~30 servicios en contenedores con
@@ -17,7 +20,7 @@ proyecto:
 Despliegue de un IaaS privado completo con OpenStack sobre una máquina virtual anidada, usando Kolla-Ansible: identidad, cómputo, red, imágenes y panel web, con una instancia corriendo y el modelo de IP flotante reproducido de principio a fin.
 
 !!! note "Contexto"
-    Laboratorio propio montado en una tarde para el portfolio. La idea venía de lejos: en el CFGS de ASIR, un profesor desplegó un OpenStack que usábamos como cloud privado, y se me quedó la espina de montarlo yo. Corre sobre el mismo HP Z1 (i7-9700, 32 GB) que uso para el resto de labs, con ESXi por debajo. Es un entorno de aprendizaje, no un servicio en producción.
+    Laboratorio propio, montado en una tarde. La idea venía de lejos: en el CFGS de ASIR, un profesor desplegó un OpenStack que usábamos como cloud privado, y se me quedó la espina de montarlo yo. Corre sobre el mismo HP Z1 (i7-9700, 32 GB) que uso para el resto de labs, con ESXi por debajo. Es un entorno de aprendizaje, no un servicio en producción.
 
 * * *
 

@@ -1,4 +1,7 @@
 ---
+description: >-
+  Inventario de activos con GLPI para una veintena de organizaciones y unos
+  600 endpoints: arquitectura, asignación a entidades y despliegue del agente.
 proyecto:
   resumen: >-
     Plataforma de inventario para una veintena de organizaciones cliente y
@@ -109,22 +112,20 @@ de tres meses en uno de un año.
 </figure>
 
 **Servidor.** GLPI 11 sobre una máquina virtual Debian 12 en un proveedor
-cloud (Plenit, antes Jotelulu), con Apache como frontal y MariaDB como backend.
+cloud, con Apache como frontal y MariaDB como backend.
 El certificado de Let's Encrypt, emitido por desafío DNS-01, sustituyó a uno
 autofirmado: con él, los agentes validan la cadena de confianza completa sin
 excepciones ni opciones para saltarse la verificación SSL.
 
-**Publicación.** El servicio se publica en un puerto no estándar. Esta decisión, que
-parecía menor, resultó ser el punto más conflictivo del proyecto: los clientes cuyo
-tráfico sale por un proxy corporativo o por una solución SASE no siempre tienen
-permitidos puertos distintos del 443 hacia destinos externos, y el agente falla en
-silencio. En despliegues nuevos conviene resolver el NAT al 443 antes de tocar
-ningún endpoint.
+**Publicación.** El puerto por el que se publica el servicio parecía una decisión
+menor y resultó ser el punto más conflictivo del proyecto: los clientes cuyo tráfico
+sale por un proxy corporativo o por una solución SASE no siempre tienen permitidos
+puertos distintos del 443 hacia destinos externos, y el agente falla en silencio.
+La lección: dejar la publicación resuelta en el 443 antes de tocar ningún endpoint.
 
 **Multi-tenancy.** GLPI organiza los datos en entidades. Cada cliente es una entidad,
 y los técnicos ven el conjunto mientras que cada contexto de cliente queda separado.
-El acceso está limitado al equipo técnico; la integración con LDAP y el SSO se
-aplazaron conscientemente por ser tres personas.
+El acceso está limitado al equipo técnico.
 
 ---
 
@@ -231,15 +232,11 @@ nombre para los parámetros del MSI provoca comportamientos difíciles de diagno
 ## Estado y siguientes pasos
 
 La plataforma está en producción con el parque inventariado y las entidades asignadas
-automáticamente. La hoja de ruta inmediata, por orden de prioridad:
+automáticamente. Lo siguiente, por orden de prioridad:
 
-1. **Copias de seguridad de la base de datos.**
-2. **Ajuste de rendimiento**: OPcache al 100% de uso con 128 MB, a subir a 256 MB;
-   revisión de `innodb_buffer_pool_size` en MariaDB.
-3. **Inyección de datos históricos por número de serie** desde las hojas de cálculo
+1. **Inyección de datos históricos por número de serie** desde las hojas de cálculo
    originales, mediante el plugin Data Injection.
-4. **Cuadros de mando e informes de obsolescencia por entidad.**
+2. **Cuadros de mando e informes de obsolescencia por entidad.**
 
 Aplazado de forma consciente: descubrimiento de red por SNMP, inventario de
-hipervisores, LDAP por entidad, cumplimiento de licencias y despliegue del agente en
-macOS a escala.
+hipervisores, cumplimiento de licencias y despliegue del agente en macOS a escala.

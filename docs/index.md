@@ -1,4 +1,7 @@
 ---
+description: >-
+  Portfolio de Enrique Montalvo Mejías, consultor de sistemas y ciberseguridad
+  en Madrid: proyectos reales y laboratorios documentados.
 template: home.html
 
 # ── Cabecera ────────────────────────────────────────────────────────────
@@ -20,7 +23,7 @@ terminal:
 # ── Cifras (el número se anima; admite "~" delante y decimales con coma) ──
 cifras:
   - valor: "5"
-    texto: entornos de trabajo distintos, del rack al cloud
+    texto: entornos de trabajo distintos, del hardware a la consultoría
   - valor: "~600"
     texto: endpoints inventariados con GLPI
   - valor: "~20"
@@ -31,8 +34,8 @@ cifras:
 # ── Proyectos: salen solos de los writeups con "proyecto:" ──────────────
 proyectos:
   intro: >-
-    Writeups de proyectos reales y laboratorios: arquitectura, decisiones y lo
-    que se rompió por el camino.
+    Proyectos reales y laboratorios. Cada writeup cuenta qué monté, por qué lo
+    decidí así y con qué me peleé.
 
 # ── En qué trabajo (el texto de abajo, fuera del front matter, va de intro) ─
 areas:
@@ -62,8 +65,8 @@ areas:
 seguir:
   - pagina: trayectoria.md
     texto: >-
-      Cinco entornos distintos, del rack al cloud. Un perfil comodín con rumbo
-      a la ciberseguridad.
+      De revisar racks en unas prácticas a Zero Trust en consultoría, puesto a
+      puesto.
   - pagina: formacion.md
     texto: ASIR, el máster en curso, certificaciones y los labs que monto por mi cuenta.
   - pagina: rumbo.md

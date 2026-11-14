@@ -1,4 +1,7 @@
 ---
+description: >-
+  Trayectoria de Enrique Montalvo: de técnico de hardware y redes a consultor
+  de sistemas y ciberseguridad con Zscaler e identidad Microsoft.
 template: pagina.html
 hide:
   - navigation
@@ -8,13 +11,13 @@ hide:
 # Trayectoria
 
 He pasado por cinco entornos muy distintos: hardware, servicio técnico a
-empresas, industria ferroviaria, soporte 24x7 y consultoría. Eso es lo que me
-diferencia: conozco cada capa, del rack y el cableado a la identidad y el Zero
-Trust en cloud.
+empresas, industria ferroviaria, soporte 24x7 y consultoría. Empecé revisando
+racks y diagnosticando discos en unas prácticas; hoy configuro Zero Trust en
+Zscaler para varios clientes.
 
-Hoy mi rol se orienta cada vez más a la ciberseguridad, pero sigo siendo un
-perfil comodín: cuando algo se complica en un cliente, también soy el que baja
-a resolverlo en persona.
+Mi rol se orienta cada vez más a la ciberseguridad, pero no he soltado lo
+anterior: cuando algo se complica en un cliente, también soy el que baja a
+resolverlo en persona.
 
 <div class="stats">
   <div><strong>5 entornos</strong><span>hardware, servicio técnico, industria, soporte 24x7 y consultoría</span></div>
@@ -49,8 +52,9 @@ principal de seguridad.
 
 - Microsoft 365, Exchange Online, Entra ID y Active Directory en varios tenants:
   identidades, accesos condicionales, AD sincronizado e Intune.
-- [Wazuh](proyectos/wazuh.md): despliegue de un SIEM/XDR distribuido en dos
-  nodos para monitorizar servidores de cliente.
+- Wazuh: despliegue de un SIEM/XDR distribuido en dos nodos para monitorizar
+  servidores de cliente. Su versión de laboratorio, donde además lo ataco, es
+  el [lab de purple team](proyectos/wazuh.md).
 - [GLPI](proyectos/glpi.md): plataforma multi-tenant de inventario para unos
   600 endpoints.
 - Sophos: endpoints, VPN y sincronización de usuarios.

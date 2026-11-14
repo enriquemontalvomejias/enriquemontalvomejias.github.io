@@ -1,4 +1,7 @@
 ---
+description: >-
+  Formación de Enrique Montalvo: ASIR, máster en Ciberseguridad e IA,
+  certificaciones de Zscaler y laboratorios propios.
 template: pagina.html
 hide:
   - navigation

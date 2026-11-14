@@ -1,4 +1,7 @@
 ---
+description: >-
+  Lab de purple team: ataques desde Kali a un dominio Active Directory aislado
+  y su detección en Wazuh con Sysmon y Suricata.
 proyecto:
   resumen: >-
     Lab de ataque y detección sobre un dominio Active Directory aislado: desde

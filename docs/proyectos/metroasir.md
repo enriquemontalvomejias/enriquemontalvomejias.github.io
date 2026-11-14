@@ -1,4 +1,7 @@
 ---
+description: >-
+  MetroASIR, TFG de ASIR: aplicación web de rutas accesibles del Metro de
+  Madrid sobre una infraestructura segmentada con pfSense y Proxmox.
 proyecto:
   resumen: >-
     Infraestructura en Proxmox segmentada en WAN, LAN y DMZ con pfSense y
@@ -127,8 +130,8 @@ base de datos solo acepta conexiones al puerto 3306 desde la IP del servidor web
 con una regla de firewall específica.
 
 **Base de datos mínima.** Debian 12 en modo consola, sin entorno gráfico, para
-reducir consumo y superficie de ataque. La aplicación usa un usuario propio con
-permisos limitados en lugar del administrador.
+reducir consumo y superficie de ataque. El diseño preveía un usuario propio con
+permisos limitados para la aplicación, en lugar del administrador.
 
 **Publicación con Cloudflare Tunnel.** El dominio se delegó a los DNS de Cloudflare
 y `cloudflared` corre como servicio en el servidor web. El túnel sale desde dentro
@@ -161,15 +164,15 @@ en PHP mediante `fetch()`, con respuestas JSON y sin recargar la página.
 | `dijkstra.php` | Implementación del algoritmo de Dijkstra |
 | `ruta_dijkstra.php` | Recibe origen, destino y filtro; construye el grafo y devuelve la ruta y el tiempo total |
 
-Todas las consultas que llevan datos del usuario usan **consultas preparadas**, así
-que la API no es vulnerable a inyección SQL.
+Todas las consultas que llevan datos del usuario son **consultas preparadas**: lo
+que escribe el usuario viaja como parámetro y nunca se concatena en el SQL.
 
 ---
 
 ## Con qué nos peleamos
 
 **pfSense con una sola tarjeta de red.** La máquina virtual se crea con una
-interfaz, y una segmentación WAN/LAN/DMZ necesita tres. Hubo que crear dos bridges
+interfaz, y una segmentación WAN/LAN/DMZ necesita tres. Tuvimos que crear dos bridges
 nuevos en Proxmox (`vmbr1` para la DMZ y `vmbr2` para la LAN) y conectar la máquina
 a los tres con adaptadores virtio.
 
@@ -178,18 +181,18 @@ rangos privados (RFC 1918) en la WAN, pensando en que la WAN sea internet. Aquí
 WAN era la red de casa, también privada, así que las zonas internas no salían hasta
 desactivar ese bloqueo.
 
-**Recursos justos.** Con 2 GB de RAM para el firewall, se eligió UFS en lugar de
-ZFS al instalar pfSense. La monitorización de Proxmox sirvió para ajustar la
+**Recursos justos.** Con 2 GB de RAM para el firewall, elegimos UFS en lugar de
+ZFS al instalar pfSense. La monitorización de Proxmox nos sirvió para ajustar la
 memoria de cada máquina a lo que de verdad necesitaba.
 
 **Dos servicios en el mismo puerto.** Desde la red de casa, la interfaz web de
-pfSense y el servidor web competían por el mismo puerto en la WAN. Se resolvió con
+pfSense y el servidor web competían por el mismo puerto en la WAN. Lo resolvimos con
 redirecciones de puertos distintas para cada uno.
 
 **Un puerto 21 que no existía.** En un escaneo con Nmap desde Kali, el host de
 Proxmox mostró el puerto 21 (FTP) abierto. `ss` y `lsof` confirmaron que no había
 ningún servicio escuchando, y `nmap -sV` lo dejó en falso positivo, probablemente
-por una respuesta ambigua del túnel VPN. Aun así se añadió una regla de denegación
+por una respuesta ambigua del túnel VPN. Aun así añadimos una regla de denegación
 explícita, y el puerto pasó a aparecer como filtrado. Lección: verificar antes de
 dar un hallazgo por bueno, y cerrar igualmente lo que no tiene por qué responder.
 
@@ -205,7 +208,7 @@ Mirándolo desde mi trabajo actual en seguridad:
   `.env` fuera del repositorio, y usar siempre el usuario limitado.
 - **Mínimo privilegio de verdad.** El usuario de la aplicación tenía permisos de
   lectura y escritura, pero la aplicación solo consulta datos: bastaba con `SELECT`.
-- **MariaDB escuchando solo donde debe.** Durante la configuración se puso
+- **MariaDB escuchando solo donde debe.** Durante la configuración pusimos
   `bind-address` en `0.0.0.0` de forma temporal. En producción iría fijado a la IP
   de la interfaz LAN.
 - **Sin entorno gráfico en la DMZ.** El servidor web tenía XFCE por comodidad. En un

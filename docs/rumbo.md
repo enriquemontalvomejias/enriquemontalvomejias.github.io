@@ -1,4 +1,7 @@
 ---
+description: >-
+  Hacia dónde va Enrique Montalvo: seguridad operativa, con una hoja de ruta
+  de lo hecho, lo que está en marcha y lo siguiente.
 template: pagina.html
 hide:
   - navigation

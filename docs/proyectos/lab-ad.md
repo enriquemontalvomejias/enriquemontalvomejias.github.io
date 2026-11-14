@@ -1,4 +1,7 @@
 ---
+description: >-
+  Lab de identidad híbrida: Active Directory sincronizado con Entra ID, MFA
+  obligatorio y unión al dominio en remoto con Tailscale.
 proyecto:
   resumen: >-
     AD local sincronizado con Entra ID, MFA obligatorio y unión al dominio
@@ -20,8 +23,8 @@ sobre un portátil doméstico.
 !!! info "Contexto"
     Laboratorio personal montado entre abril y mayo de 2026 para practicar la
     arquitectura de identidad que uso a diario con clientes. Los nombres de
-    dominio, tenant, equipos y usuarios, y las direcciones de Tailscale, se han
-    omitido.
+    dominio, tenant, equipos y usuarios se han omitido o sustituido por valores
+    genéricos.
 
 ---
 

@@ -10,7 +10,8 @@ Writeups de proyectos reales y laboratorios: la arquitectura, las decisiones y l
 
 - [Inventario multi-tenant con GLPI](https://enriquemontalvomejias.github.io/proyectos/glpi/)
 - [Laboratorio de identidad híbrida](https://enriquemontalvomejias.github.io/proyectos/lab-ad/)
-- [SIEM distribuido con Wazuh](https://enriquemontalvomejias.github.io/proyectos/wazuh/)
+- [Lab de purple team con Wazuh](https://enriquemontalvomejias.github.io/proyectos/wazuh/)
+- [Cloud privado con OpenStack](https://enriquemontalvomejias.github.io/proyectos/openstack/)
 - [MetroASIR (TFG)](https://enriquemontalvomejias.github.io/proyectos/metroasir/)
 
 ## Cómo está hecho
